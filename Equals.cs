@@ -32,7 +32,7 @@ public class Equals{
          - strings are equal when they have the same value or both null
 
             Equals():
-         - value types ... same
+         - value types ... same, but with boxing/unboxing and some exceptions
          - reference types (except string) are equal when they refer to the same Object
          - string.Equals(o) 'o' can be an object that refer to string.
          - strings are equal when they have the same value
@@ -73,9 +73,9 @@ public class Equals{
       System.Console.WriteLine(int1 == double1);               //T
       System.Console.WriteLine(double1 == int1);                           //T
 
-
       System.Console.WriteLine(int1.Equals(byte1));            //T
       System.Console.WriteLine(byte1.Equals(int1));                         //F
+
 
 
       int value1 = 12;
@@ -90,6 +90,8 @@ public class Equals{
       Console.WriteLine(object2.Equals(object1));              // F
       Console.WriteLine(value2.Equals(value1));                            // T 
 
+      Console.WriteLine(object2.Equals(value1));              // F
+      Console.WriteLine(object2.Equals(value2));                           // T
    }
 }
 public class MyClass{
