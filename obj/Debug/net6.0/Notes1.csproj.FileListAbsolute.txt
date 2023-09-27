@@ -1,0 +1,15 @@
+C:\Work\Material for preparing for the interview\Notes1\bin\Debug\net6.0\Notes1.exe
+C:\Work\Material for preparing for the interview\Notes1\bin\Debug\net6.0\Notes1.deps.json
+C:\Work\Material for preparing for the interview\Notes1\bin\Debug\net6.0\Notes1.runtimeconfig.json
+C:\Work\Material for preparing for the interview\Notes1\bin\Debug\net6.0\Notes1.dll
+C:\Work\Material for preparing for the interview\Notes1\bin\Debug\net6.0\Notes1.pdb
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.csproj.AssemblyReference.cache
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.AssemblyInfoInputs.cache
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.AssemblyInfo.cs
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.csproj.CoreCompileInputs.cache
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.dll
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\refint\Notes1.dll
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.pdb
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.genruntimeconfig.cache
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\ref\Notes1.dll
