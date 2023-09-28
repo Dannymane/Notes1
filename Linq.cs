@@ -28,7 +28,7 @@ public class Student : Person{
       public int? GrPoint  { get; set; }
    }
 public class Linq{
-   public static async Task Mainw(string[] args){
+   public static async Task Main(string[] args){
 
    Person p = new Student(){StudentID = 1, StudentName = "John", age = 18}; //it sees only Person properties
    Student s12;
@@ -137,6 +137,9 @@ Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault()
    //3 Find the number and its square of an array which is more than 20 : 
    var arr1 = new[] { 3, 9, 2, 8, 6, 5 };
    // Number = 9, SqrNo = 81
+
+
+
    System.Console.WriteLine(string.Join(" ", arr1.Where(i => i*i > 20).Select(i => i*i)));
    string[] resultArray = arr1.Where(i => i * i > 20)
                            .Select(i => ("Number = " + i.ToString() + ", SqrNo = " + (i * i).ToString()))
@@ -158,7 +161,6 @@ Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault()
    //4 Display the number and frequency of number from given array:
    System.Console.WriteLine("\n//4\n");
    int[] arr2 = new int[] { 5, 9, 1, 2, 3, 7, 5, 6, 7, 3, 7, 6, 8, 5, 4, 9, 6, 2 };  
-
 
 
    var standardList = arr2.Distinct().ToArray();
@@ -188,6 +190,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    System.Console.WriteLine("\n//7");
 
    int[] numbers = { 5, 1, 9, 2, 3, 7, 4, 5, 6, 8, 7, 6, 3, 4, 5, 2 };
+   
 
 
 
@@ -196,36 +199,29 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    foreach(var r in res)
       System.Console.WriteLine(r[0] + " " + r[1] + " " + r[2]);
 
-   //8 Write a program in C# Sharp to find a string that starts and ends with a specific character.
+   //8 Find a string that starts and ends with a specific character.
    System.Console.WriteLine("\n//8");
 
    string[] cities =  { "ROME","LONDON","NAIROBI","CALIFORNIA","ZURICH","NEW DELHI","AMSTERDAM","ABU DHABI", "PARIS"}; 
 
+   
 
    // var resString = cities.Where(c => c[0].ToString() == "A" && c[c.Length-1].ToString() == "M").FirstOrDefault();
    // var resString = cities.Where(c => c.StartsWith("A") && c.EndsWith("M")).FirstOrDefault();
    var resString = cities.FirstOrDefault(str => str.StartsWith("A") && str.EndsWith("M"));;
    System.Console.WriteLine(resString);
 
-   //9 Write a program in C# Sharp to create a list of numbers and display numbers greater than 80.
-   System.Console.WriteLine("\n//9");
 
-   int[] arr9 = {55, 200, 740, 76, 230, 482, 95};
-   var res9 = arr9.Where(n => n > 80).ToArray();
-   foreach(int i in res9)
-      System.Console.WriteLine(i);
-
-   //11 Write a program in C# to display the top 3 records. 
+   //11 Display the top 3 records. 
    System.Console.WriteLine("\n//11");
    int[] arr11 = {5, 7, 13, 24, 6, 9, 8, 7};
    
-
    //top 3 records
    var res11 = arr11.OrderByDescending(x => x).Take(3);
    foreach(var i in res11)
       System.Console.WriteLine(i);
 
-   //12 Write a program in C# to find uppercase words in a string.
+   //12 Find uppercase words in a string.
    System.Console.WriteLine("\n//12");
 
    string str12 = "this IS a STRING";
@@ -235,14 +231,14 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    foreach (var s in res12)
       System.Console.WriteLine(s);
    
-   //13 Write a program in C# to convert a string array to a string.
+   //13 Convert a string array to a string.
    System.Console.WriteLine("\n//13");
 
    string[] arr13 = {"cat", "dog", "rat"};
 
    System.Console.WriteLine(String.Join(", ", arr13));
 
-   //14 Write a program in C# to find the n-th maximum grade point achieved by the students from the list of students.
+   //14 Find the n-th maximum grade point achieved by the students from the list of students.
    System.Console.WriteLine("\n//14");
 
    List<Student> stulist = new List<Student>
@@ -275,7 +271,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
       System.Console.WriteLine(st);
 
    
-   //15 Write a program in C# to count file extensions and group it using LINQ
+   //15 Count file extensions and group it using LINQ
    System.Console.WriteLine("\n//15");
 
    string[] arr15 = { "aaa.frx", "bbb.TXT", "xyz.dbf","abc.pdf", "aaaa.PDF","xyz.frt", "abc.xml", "ccc.txt", "zzz.txt" };
@@ -286,7 +282,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    foreach(var ext in res15)
       System.Console.WriteLine($"{ext.Count()} File(s) with .{ext.Key} Extension");
 
-   // 15 Write a program to remove string at index 5, "m" and all "o"
+   // Remove string at index 5, "m" and all "o"
    List<string> listOfString = new List<string>
    {
       "m",
@@ -303,7 +299,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    listOfString.Remove("m"); //one m
    listOfString.RemoveAll(ch => ch == "o"); //all o
 
-   listOfString.ForEach(ch => Console.WriteLine(ch));
+   listOfString.ForEach(ch => Console.WriteLine(ch)); // m n q
 
    listOfString = new List<string>
    {
@@ -315,21 +311,20 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    };  
    System.Console.WriteLine();
    listOfString.RemoveRange(1,2);
-   listOfString.ForEach(ch => System.Console.WriteLine(ch));
+   listOfString.ForEach(ch => System.Console.WriteLine(ch)); // m p q
 
-   //22 Write a program in C# to find the strings for a specific minimum length
+   //22 Find the strings for a specific minimum length
 
    string[] arr22 = new string[]{"this","is","a","specific", "minimum", "length"};
    //minimum length - 5
    var res22 = arr22.Where(str => str.Length >= 5).ToArray();
    Array.ForEach(res22, str => System.Console.WriteLine(str)); //specific minimum length
 
-   //23 Write a program in C# Sharp to generate a cartesian product of two sets.
+   //23 Generate a cartesian product of two sets.
    System.Console.WriteLine("\n//23\n");
 
    char[] charset1 = { 'X', 'Y', 'Z' };
 	int[] numset1 = { 1, 2, 3, 4 };
-
 
 
 
@@ -344,7 +339,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
             new List<string> { "dog", "cat", "elephant" },
             new List<string> { "red", "green", "blue" }
       };
-   
+
    
    
    // listOfLists.Aggregate((l1, l2) => l1.Union(l2).ToList()).ToList().ForEach(r => System.Console.WriteLine(r));
@@ -358,31 +353,30 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    var colorSizes = colors.SelectMany(c => sizes.Select(s => c + " " + s)).ToList();
    colorSizes.ForEach(cs => System.Console.WriteLine(cs));
 
-   //SelectMany with index
+   //Select with index
    string[] names2 = { "Alice", "Bob", "Charlie", "David" };
 
 
 
-   var indexedNames = names2.SelectMany((name, index) => name + index);
+   var indexedNames = names2.Select((name, index) => name + index);
    foreach (var entry in indexedNames)
       {
          Console.WriteLine(entry);
       }
    // indexedNames.ForEach(n => System.Console.WriteLine(n));
 
-   //24 Write a program in C# to generate a cartesian product of three sets.
+   //24 Generate a cartesian product of three sets.
 
    char[] charset2 = { 'X', 'Y', 'Z' };
    int[] numset2 = { 1, 2, 3 };
    string[] colorset2 = { "Green", "Orange" };
 
 
-
    var tripleCrossJoin = charset2.SelectMany(ch => numset2.SelectMany(n => colorset2.Select(c => new {letter = ch, number = n, color = c})));
    foreach(var record in tripleCrossJoin)
       System.Console.WriteLine(record);
 
-   //25 Write a program in C# to generate an Inner Join between two data sets.
+   //25 Generate an Inner Join between two data sets.
    System.Console.WriteLine("\n//25\n");
    List<Item_mast> itemlist = new List<Item_mast>{  
       new Item_mast { ItemId = 1, ItemDes = "Biscuit" }, 
@@ -414,7 +408,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
 
    join25.ForEach(r => System.Console.WriteLine(r));
 
-   //26  Write a program in C# to generate a Left Join between two data sets.
+   //26  Generate a Left Join between two data sets.
       System.Console.WriteLine("\n//26\n");
 
    List<Item_mast> itemlist26 = new List<Item_mast>{  
@@ -434,6 +428,8 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
       new Purchase { InvNo=105, ItemId = 4,  PurQty = 650 },
       new Purchase { InvNo=106, ItemId = 1,  PurQty = 458 }
    };
+
+
 
 
    var leftJoin2 = itemlist26.GroupJoin(purchlist26,
@@ -465,7 +461,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    System.Console.WriteLine(list132[1].GetHashCode()); //2
 
    System.Console.WriteLine(list132[2].GetType()); //Purchase
-   System.Console.WriteLine(list132[2].GetHashCode());//54267293
+   System.Console.WriteLine(list132[2].GetHashCode()); //54267293
 
    System.Console.WriteLine(list132[3].GetType()); //MyStruct
    System.Console.WriteLine(list132[3].GetHashCode()); //807938613
@@ -522,18 +518,19 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
 
    res27_2.ForEach(r => System.Console.WriteLine(r));
 
-   //28 Write a program in C# to display the list of items in the array according to the length of the string then by name in ascending order.
+   //28 Display the list of items in the array according to the length of the string then by name in ascending order.
    System.Console.WriteLine("\n//28\n");
 
    string[] cities28 =  
             {  
                 "ROME","LONDON","NAIROBI","CALIFORNIA","ZURICH","NEW DELHI","MASTERDAM","AMSTERDAM","ABU DHABI", "PARIS"  
             }; 
+
    // var res28 = cities28.OrderBy(str => (str.Length, str)).ToList();
    var res28 = cities28.OrderBy(str => str.Length).ThenBy(str => str).ToList();
    res28.ForEach(r => System.Console.WriteLine(r));
 
-   //29 Write a program in C# to split a collection of strings into some groups.
+   //29 Split a collection of strings into some groups (every line = new group).
    System.Console.WriteLine("\n//29\n");
 
    string[] cities29 =  
@@ -557,7 +554,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
 
    l29.ForEach(r => System.Console.WriteLine(String.Join(", ", r)));
 
-   //30 Write a program in C# to arrange the distinct elements in the list in ascending order.
+   //30 Arrange the distinct elements in the list in ascending order.
    System.Console.WriteLine("\n//30\n");
    List<Item_mast> items30 = new List<Item_mast>();
    items30.Add(new Item_mast() { ItemId = 1, ItemDes = "Biscuit  " });
@@ -567,7 +564,14 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    items30.Add(new Item_mast() { ItemId = 2, ItemDes = "Honey    " });
    items30.Add(new Item_mast() { ItemId = 1, ItemDes = "Biscuit  " });
 
-   items30.OrderBy(i => i.ItemDes).Distinct(new Item_mast_comparer()).ToList().ForEach(r => System.Console.WriteLine(" " + r.ItemId + r.ItemDes));
+   
+
+
+
+   items30.OrderBy(i => i.ItemDes)
+      .Distinct(new Item_mast_comparer())
+      .ToList()
+      .ForEach(r => System.Console.WriteLine(r.ItemId + " " + r.ItemDes));
 
    // Lock Object
    LockClass lc = new LockClass();//value = 1
@@ -642,26 +646,26 @@ public class Purchase
 
 public class LockClass{
    private Object lockObject;
-   private int value;
+   private int _value;
    public void Value(int v){
-      value = v;
+      _value = v;
    }
 
    public void MultiplyValue(int v){
-      value = value*v;
+      _value = _value*v;
    }
    public void MultiplyValueLock(int v){
       lock (lockObject){
-      value = value*v;
+      _value = _value*v;
       }
    }
    public int Value(){
-      return value;
+      return _value;
    }
    
    public LockClass()
    {
       lockObject = new Object();
-      value = 1;
+      _value = 1;
    }
 }
