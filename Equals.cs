@@ -20,7 +20,7 @@ namespace Equals{
 
 public class Equals{
    
-   public static void Main(){
+   public static void Mainw(){
       Tst t43 = new Tst(1,2);
       Tst t44 = new Tst(1,2);
       t43.Test(t44); //Equals.Tst Equals.Tst

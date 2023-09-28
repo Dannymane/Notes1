@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-//
+
  struct MyStruct{
    int a;
    int b;
@@ -72,7 +72,7 @@ public class Linq{
 
 
    // Use LINQ to find first student whose name is Bill 
-   Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault() ?? new Student{ StudentID = 1, StudentName = "Bill", age = 18 } ;
+Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault() ?? new Student{ StudentID = 1, StudentName = "Bill", age = 18 } ;
    System.Console.WriteLine(bill.StudentName); //Bill
 
    // Use LINQ to find students whose StudentID is 5
@@ -104,6 +104,10 @@ public class Linq{
       Console.WriteLine(resultAverage); //3
    var resultMax = a.Max();
    System.Console.WriteLine(resultMax); //5
+
+
+  
+
 
    //Extension method
    Student s1 = new Student() { StudentID = 1, StudentName = "John", age = 18 };
