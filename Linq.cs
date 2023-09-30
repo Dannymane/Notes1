@@ -28,7 +28,7 @@ public class Student : Person{
       public int? GrPoint  { get; set; }
    }
 public class Linq{
-   public static async Task Mainw(string[] args){
+   public static async Task Main(string[] args){
 
    Person p = new Student(){StudentID = 1, StudentName = "John", age = 18}; //it sees only Person properties
    Student s12;
@@ -125,7 +125,7 @@ Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault()
       //even numbers
    System.Console.WriteLine(string.Join(" ", n1.Where(i => i%2 == 0)));
 
-   
+
    //2 Using multiple WHERE clause to find the positive numbers from 1 to 10 within the list 
 
    int[] n2 = {  1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14  };  
@@ -163,8 +163,9 @@ Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault()
    int[] arr2 = new int[] { 5, 9, 1, 2, 3, 7, 5, 6, 7, 3, 7, 6, 8, 5, 4, 9, 6, 2 };  
 
 
+
    var standardList = arr2.Distinct().ToArray();
-var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
+   var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
                                        sl => sl,  //outer Key (in this case  - just value)
                                        i => i,   //inner Key (in this case  - just value)
                                        (s, i) => new {
@@ -186,11 +187,11 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    foreach(var ch in group2)
       System.Console.WriteLine($"Character {ch.Key}: {ch.Count()} times");
 
-   //7 Write a program in C#  to display numbers, multiplication of numbers with frequency and the frequency of a number !!!in an array!!!.
+   //7 Вisplay numbers, multiplication of numbers with frequency and the frequency of a number !!!in an array!!!.
    System.Console.WriteLine("\n//7");
 
    int[] numbers = { 5, 1, 9, 2, 3, 7, 4, 5, 6, 8, 7, 6, 3, 4, 5, 2 };
-   
+  
 
 
 
@@ -235,6 +236,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    System.Console.WriteLine("\n//13");
 
    string[] arr13 = {"cat", "dog", "rat"};
+   
 
    System.Console.WriteLine(String.Join(", ", arr13));
 
@@ -342,7 +344,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
 
    
    
-   // listOfLists.Aggregate((l1, l2) => l1.Union(l2).ToList()).ToList().ForEach(r => System.Console.WriteLine(r));
+   // listOfLists.Aggregate((l1, l2) => l1.Concat(l2).ToList()).ToList().ForEach(r => System.Console.WriteLine(r));
    var resLOL = listOfLists.SelectMany(list => list);
    System.Console.WriteLine(String.Join(" ", resLOL));
 
@@ -429,7 +431,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
       new Purchase { InvNo=106, ItemId = 1,  PurQty = 458 }
    };
 
-
+   
 
 
    var leftJoin2 = itemlist26.GroupJoin(purchlist26,
@@ -525,7 +527,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
             {  
                 "ROME","LONDON","NAIROBI","CALIFORNIA","ZURICH","NEW DELHI","MASTERDAM","AMSTERDAM","ABU DHABI", "PARIS"  
             }; 
-
+   
    // var res28 = cities28.OrderBy(str => (str.Length, str)).ToList();
    var res28 = cities28.OrderBy(str => str.Length).ThenBy(str => str).ToList();
    res28.ForEach(r => System.Console.WriteLine(r));
@@ -540,6 +542,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
          "AMSTERDAM", "ABU DHABI", "PARIS",
          "NEW YORK"  
    };
+
 
    var res29 = Enumerable.Range(0, cities29.Length)
    .GroupBy(i => i / 3, i => cities29[i])
@@ -565,7 +568,7 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    items30.Add(new Item_mast() { ItemId = 1, ItemDes = "Biscuit  " });
 
    
-
+   
 
 
    items30.OrderBy(i => i.ItemDes)
@@ -578,12 +581,15 @@ var groupJoin = standardList.GroupJoin(arr2,       //inner sequence
    await Task.Run( () => {
       Parallel.For(1, 20, (i) => {
          lc.MultiplyValue(2);
-         // System.Console.Out.WriteLineAsync(i + " " + Thread.CurrentThread.ManagedThreadId);
+          System.Console.Out.WriteLineAsync(i + " " + Thread.CurrentThread.ManagedThreadId);
       });
    });
    System.Console.WriteLine(lc.Value());
 
    lc.Value(1);
+   
+
+   
 
    await Task.Run( () => {
       Parallel.For(1, 20, (i) => {
