@@ -68,7 +68,7 @@ public class Program{
                                  .Where(str => Regex.IsMatch(str.ToString(), $"{d}"))
                                  .Count());
    }
-   public static void Mains(){
+   public static void Mainw(){
 
 
       Book b = new Book(){
