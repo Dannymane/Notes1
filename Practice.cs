@@ -8,7 +8,12 @@ using System.Text.RegularExpressions;
 namespace Practice{
 
 
-
+public abstract class BaseBook{
+   public void SayHi(){
+      Console.WriteLine("Hi!");
+   }
+   // public abstract void SayAbstractHi(); //derived class must inherit this
+}
 
 interface IBook{
    int Pages{get;set;}
@@ -23,7 +28,7 @@ interface IBook{
    }
 }
 
-class Book : IBook{
+class Book : BaseBook, IBook{
    public int Pages{get;set;}
    public string Title{get;set;}
    public string Author{get;set;}
@@ -79,9 +84,11 @@ public class Program{
             Name = "Allen & Unwin"
          }
       };
+      b.SayHi(); //Hi! (normal method from base abstract class)
+      
       IBook ib = b;
       ib.PrintInfo();
-
+      
       Book b2 = ReturnNewBook(b);
       b.Pages = 500; //value type - does not affect b2
       b.Publisher.Name = "Penguin"; //reference type - affects b2

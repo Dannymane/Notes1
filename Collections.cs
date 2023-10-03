@@ -237,9 +237,10 @@ public class Collections{
       StringBuilder sb = new StringBuilder();
       for(int i = 1;i<=100;i++){
          sb.Append(i);
-      }
-   
-       System.Console.WriteLine(sb);
+      } // a little bit more efficient
+      string s1 = String.Join(" ",Enumerable.Range(1,100)); //more intuitive
+      
+      System.Console.WriteLine(sb);
       System.Console.WriteLine("\n");
 
       //a little bit worst solution (creates an array with 100 integers)

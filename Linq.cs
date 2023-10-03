@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
- struct MyStruct{
+struct MyStruct{
    int a;
    int b;
    public MyStruct()
