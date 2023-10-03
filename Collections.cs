@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.VisualBasic;
 using System.Collections;
 using System.Text;
+using System.Xml.Serialization;
 
 
 public class Collections{
@@ -17,7 +18,7 @@ public class Collections{
    {
 
    }
-   public static void Mainv(){
+   public static void Main(){
       //dotnet new {mvc | console | classlib | web  |...} -n SchoolRegister.Web -au Individual -f net6.0 -uld
 
       Testd t = new Testd();
@@ -238,8 +239,10 @@ public class Collections{
       for(int i = 1;i<=100;i++){
          sb.Append(i);
       } // a little bit more efficient
-      string s1 = String.Join(" ",Enumerable.Range(1,100)); //more intuitive
+
       
+      string s1 = String.Join(" ",Enumerable.Range(1,100)); //more intuitive
+
       System.Console.WriteLine(sb);
       System.Console.WriteLine("\n");
 
@@ -248,11 +251,17 @@ public class Collections{
       System.Console.WriteLine(String.Join("", dwa));
 
       //LEARN STRING BUILDER
-
+      // var p1 = new Person(); //error, because Person doesn't have default constructor when
+         // we have defined constructor with parameters
+      Person.Ok();
    }
 
-
-   public class Person
+   public class User{
+      public static void Ok(){
+         Console.WriteLine("OK");
+      }
+   }
+   public class Person : User
    {
       public string Name { get; set; }
       public int Age { get; set; }

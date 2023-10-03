@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-struct Struct{
+struct Struct {
    public int Value1{get;set;}
    public int Value2{get;set;}
    public Struct(int value1, int value2){
@@ -22,5 +22,9 @@ public class MyClass : AbstractClass{
    }
 }
 public class Program{
-
+   public static void Maine(){
+      Struct s = new Struct(1,2);
+      s.Test();
+      Console.WriteLine(s.Value1); //1
+   }
 }
