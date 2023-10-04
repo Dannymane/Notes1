@@ -15,5 +15,8 @@ public class Program{
       //Can not create an instance of the static class 
       // StaticClass sc = new StaticClass();
       // sc.Test();
+
+      //StringBuilder
+      //Regex
    }
 }
