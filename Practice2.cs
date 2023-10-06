@@ -34,7 +34,7 @@ public Node FindInOrderSuccesor(Node input){
    return FindRight(input.Parent);
 
 }
-public static void Mainw(string[] args){
+public static void Mainc(string[] args){
    
    
 
