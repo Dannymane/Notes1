@@ -18,7 +18,7 @@ public class Collections{
    {
 
    }
-   public static void Main(){
+   public static void Mainw(){
       //dotnet new {mvc | console | classlib | web  |...} -n SchoolRegister.Web -au Individual -f net6.0 -uld
 
       Testd t = new Testd();

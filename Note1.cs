@@ -8,6 +8,7 @@ public static class StaticClass{
       Console.WriteLine("Test");
    }
 }
+
 public class Program{
    public static IEnumerable<int> IteratiorMethod()
    {
@@ -31,7 +32,8 @@ public class Program{
       var array = Program.IteratiorMethod().ToArray();
       Console.WriteLine(array[2]);
 
-      
+
+
 
         //StringBuilder
         //Regex

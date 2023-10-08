@@ -18,6 +18,28 @@ namespace Equals{
       }
  }
 
+ public class Age{
+   public int Value {get;set;}
+   public Age(int value){
+      Value = value;
+   }
+   public void IncreaseAge(int value){
+      Value += value;
+   }
+}
+public class Person{
+   public string Name{get;set;}
+   public Age Age {get;set;}
+   public Person(string name, Age age){
+      this.Name = name;
+      this.Age = age;
+   }
+   public Person(Person p){
+      this.Name = p.Name;
+      this.Age = p.Age;
+   }
+}
+
 public class Equals{
    
    public static void Mainw(){
@@ -92,6 +114,37 @@ public class Equals{
 
       Console.WriteLine(object2.Equals(value1));              // F
       Console.WriteLine(object2.Equals(value2));                           // T
+   
+
+      Person p1 = new Person("John", new Age(20));
+      Person p2 = new Person(p1);
+      p1.Name = "Mary"; //From now, p1.Name points at "Mary", but p2.Name still points at "John"
+      p1.Age.IncreaseAge(10);
+      Console.WriteLine(p1.Name); //Mary 
+      Console.WriteLine(p1.Age.Value); //30
+      Console.WriteLine(p2.Name); //John
+      Console.WriteLine(p2.Age.Value); //30 
+
+      p1.Age = new Age(40);
+      Console.WriteLine(p2.Age.Value); //30, because now p2.Age points at the other object than p1.Age
+
+      Age age1 = new Age(10);
+      Age age2 = age1;
+
+      age2.Value = 20;
+      Console.WriteLine(age1.Value); //20
+
+      Object o1 = (Object)10;
+      Object o2 = o1;
+      o1 = (Object)20; //boxing, pointing to another object
+      Console.WriteLine(o2); //10
+
+      var an1 = new {Value = 10, Name = "John"};
+      var an2 = an1;//an2 point to the same object as an1 - John
+      an1 = new {Value = 20, Name = "Dan"}; //an1 do not point to John anymore
+      Console.WriteLine(an2.Value); //10
+
+      
    }
 }
 public class MyClass{
