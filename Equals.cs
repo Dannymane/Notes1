@@ -34,11 +34,20 @@ public class Person{
       this.Name = name;
       this.Age = age;
    }
+   // shallow copy constructor
    public Person(Person p){
       this.Name = p.Name;
       this.Age = p.Age;
    }
+   // deep copy constructor
+   // public Person(Person p)
+   // {
+   //    this.Name = p.Name;
+   //    this.Age = new Age(p.Age.Value); // Create a new Age object
+   // }
 }
+   
+
 
 public class Equals{
    
@@ -144,7 +153,7 @@ public class Equals{
       an1 = new {Value = 20, Name = "Dan"}; //an1 do not point to John anymore
       Console.WriteLine(an2.Value); //10
 
-      
+
    }
 }
 public class MyClass{
