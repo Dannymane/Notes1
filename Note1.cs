@@ -21,7 +21,7 @@ public class Program{
 
       //Can not create an instance of the static class 
       // StaticClass sc = new StaticClass();
-      // sc.Test();xx
+      // sc.Test();
 
       foreach(int i in Program.IteratiorMethod())
       {
