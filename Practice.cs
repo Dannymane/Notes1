@@ -33,6 +33,9 @@ class Book : BaseBook, IBook{
    public string Title{get;set;}
    public string Author{get;set;}
    public Publisher Publisher{get;set;}
+   // public void PrintInfo(){      //this will replace the IBook.PrintInfo() implementation
+   //    Console.WriteLine("no");   //you can't override IBook.PrintInfo() 
+   // }
 }
 class Publisher{
    public string Name{get;set;}
@@ -73,7 +76,7 @@ public class Program{
                                  .Where(str => Regex.IsMatch(str.ToString(), $"{d}"))
                                  .Count());
    }
-   public static void Mainx(){
+   public static void Mainw(){
 
 
       Book b = new Book(){

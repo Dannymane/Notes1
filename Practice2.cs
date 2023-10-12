@@ -1,42 +1,32 @@
 using System;
-
+using System.Text;
 
 namespace Practice2;
 
 
 public class Practice2{
 
-public class Node{
-   public Node Right {get; set;}
-   public Node Left {get; set;}
-   public Node Parent {get; set;}
+public static void Main(string[] args){
    
-}
-public Node FindLeft(Node input){
-   if(input.Left == null)
-      return input;
+   var sb = new StringBuilder("Hello World", 40);
+   sb.Append("!");
 
-   return FindLeft(input.Left);
-}
-public Node FindRight(Node input){
-   if(input.Parent.Left == input)
-      return input;
+   sb.Insert(5, " C#");
+   Console.WriteLine(sb); // Hello C# World!
 
-   return FindRight(input.Parent);
-}
-public Node FindInOrderSuccesor(Node input){
-   //down
-   if(input.Right != null)
-      return FindLeft(input.Right);
+   string str = sb.ToString();
 
-   //up
+   sb.Remove(8, sb.Length - 8);
+   Console.WriteLine(sb);
 
-   return FindRight(input.Parent);
+   var list = sb.ToString().Split(" ").ToList();
+   list.ForEach(str => Console.WriteLine(str));
 
-}
-public static void Mainc(string[] args){
+   var sb2 = new StringBuilder("Hello beautiful World!");
+   Console.WriteLine(sb2.Remove(6,10));
+
+   Console.WriteLine(sb2.Replace("Hello", "Goodbye"));
+
    
-   
-
 }
 }
