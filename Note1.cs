@@ -1,7 +1,7 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Text; //StringBuilder
-
+using System.Text.RegularExpressions; //Regex
 
 namespace Note1;
 
@@ -29,7 +29,7 @@ public class Program{
       yield return 1;
       yield return 2;
    }
-   public static void Mainn(){
+   public static void Mainw(){
       Console.WriteLine(Guid.NewGuid().ToString()); //7497599a-d2fc-43bc-84b1-ed67156f7672
 
       //Can not create an instance of the static class 
@@ -68,10 +68,45 @@ public class Program{
       sb5.Insert(5," C#");  //Hello C# World!
 
       StringBuilder sb6 = new StringBuilder("Hello World!",50);
-      sb6.Remove(6, 7);     //Hello !        //(start index, number of characters to remove)
+      sb6.Remove(6, 6);     //Hello !        //(start index, number of characters to remove)
 
       StringBuilder sb7 = new StringBuilder("Hello World!");
       sb7.Replace("World", "C#"); //Hello C#!
+
+
       //Regex
-    }
+      //using System.Text.RegularExpressions;
+
+      // - IsMatch(string input)	Returns true if the pattern matches the input string.
+      // - Match(string input)	Returns the first occurrence of the pattern in the input string.
+      // - Matches(string input)	Returns all occurrences of the pattern in the input string.
+      // - Replace(string input, string replacement)	Replaces all occurrences of the pattern in the input string
+         // with the replacement string.
+      // - Split(String)	Splits an input string into an array of substrings at the positions defined by a
+         // regular expression pattern.
+
+      Regex regex = new Regex(@"hello"); // @ is used to ignore the escape characters like \n \t
+      string inputString = "hello world! hello";
+      Match match = regex.Match(inputString);
+
+      if (match.Success)
+      {
+         Console.WriteLine("Match found at index {0} with length {1}", match.Index, match.Length);
+         //Match found at index 0 with length 5
+         Console.WriteLine(match.Value + " " + match.Name + " " + match.NextMatch());// hello 0 hello
+      }
+      else
+      {
+         Console.WriteLine("No match found.");
+      }
+
+      MatchCollection matches = regex.Matches("hello world! hello again!");
+
+      foreach (Match match2 in matches)
+      {
+         Console.WriteLine("Match found at index {0} with length {1}", match2.Index, match2.Length);
+      }
+
+
+   }
 }

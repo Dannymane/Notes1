@@ -1,15 +1,186 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Practice2;
 
 
 public class Practice2{
 
-public static void Main(string[] args){
+//2 calculate the average word length in a given string. Round the average length up to two decimal places
+public static double GetAverageWordLength(string input){
+
+   // Regex regex = new Regex(@"\w+");
+   Regex regex = new Regex(@"[a-zA-Z-]{2,}");
+   MatchCollection mc = regex.Matches(input);
+
+
+   if (mc != null && mc.Count() > 0)
+      return Math.Round((mc.Average(word => word.Length)), 2);
+   return 0;
+}
+
+//3 check whether a given string of characters can be transformed into a palindrome.
+   // Return true otherwise false.
+public static bool CanTransformToPalindrome(string inp){
+   return Regex.Replace(string.Concat(inp.OrderBy(x => x)),@"([a-z])\1{1}",string.Empty).Length <= 1;
+}
+
+/* 4 validate a password of length 7 to 16 characters with the following guidelines:
+   • Length between 7 and 16 characters.
+   • At least one lowercase letter (a-z).
+   • At least one uppercase letter (A-Z).
+   • At least one digit (0-9).
+   • Supported special characters: ! @ # $ % ^ & * ( ) + = _ - { } [ ] : ; " ' ? < > , .
+   */
+public static bool IsPasswordValid(string inp){
+   if(inp.Length < 7 || inp.Length > 16)
+      return false;
+
+   if(!Regex.IsMatch(inp, @"[a-z]"))
+      return false;
+
+   if(!Regex.IsMatch(inp, @"[A-Z]"))
+      return false;
+
+   if(!Regex.IsMatch(inp, @"\d"))
+      return false;
+
+   if(Regex.IsMatch(inp, "[^a-zA-Z0-9!@#$%^&*()+=_-{}\\[\\]:;\"'?<>,]"))
+      return false;
+
+   return true;
+}
+
+//check for repeated occurrences of words in a given string
+/*
+   ("C# C# syntax is highly expressive, yet it is is also simple and easy to to learn learn.") -> 3 matches found
+   ("Red Green Green Black Black Green.") -> 2 matches found
+*/
+public static int CountRepeatedWords(string inp){
    
-   var sb = new StringBuilder("Hello New York", 20);
-   sb.Replace("Hello ", "");
-   Console.WriteLine(sb);
+   ;
+   Console.WriteLine(String.Join(" ",
+   Regex.Replace(inp, @"[.,!?]", "")
+      .Split()
+      .OrderBy(x => x)) + " ");
+   return Regex.Matches(String.Join(" ",
+      Regex.Replace(inp, @"[.,!?]", "")
+         .Split()
+         .OrderBy(x => x)),
+      @"(\w{2,}\s)\1").Distinct(new MatchComparer()).Count();
+}
+
+    public class MatchComparer : IEqualityComparer<Match>
+    {
+        public bool Equals(Match? x, Match? y)
+        {
+            if(x.Value == y.Value)
+               return true;
+
+            return false;
+        }
+
+        public int GetHashCode([DisallowNull] Match obj)
+        {
+            return obj.Value.GetHashCode();
+        }
+    }
+    public static void Main(string[] args){
+   // 1
+   Console.WriteLine("\n--- 1 ---");
+   //check whether a given string is a valid Hex code or not
+   //A valid Hex code must start with # and it must contain six characters
+
+   // ("#CD5C5C") -> True
+   // ("#f08080") -> True
+   // ("#E9967A") -> True
+   // ("#EFFA07A") -> False
+   Regex regex1 = new Regex(@"^#.{6}$") ;
+   string s1 = "#CD5C5C";
+   string s2 = "#f08080";
+   string s3 = "#E9967A";
+   string s4 = "#EFFA07A";
+
+   Console.WriteLine(regex1.IsMatch(s1));    //T
+   Console.WriteLine(regex1.IsMatch(s2));    //T
+   Console.WriteLine(regex1.IsMatch(s3));    //T
+   Console.WriteLine(regex1.IsMatch(s4));    //F
+
+   // -----------------------
+   string[] str = new string[] {"ok", "one", "four123d"};
+   Console.WriteLine(str.Average(s => s.Length));
+   
+   Regex regex = new Regex(@"\d{3}");
+   MatchCollection mc = regex.Matches("123 452.");
+
+   mc.ToList().ForEach(x => Console.WriteLine(x.Value));
+   // -----------------------
+
+   //-------------------------------------------
+   Console.WriteLine("\n--- 2 ---");
+   //2
+   //calculate the average word length in a given string. Round the average length up to two decimal places
+
+   // ("CPP Exercises." -> 6
+   // ("C# syntax is highly expressive, yet it is also simple and easy to learn.") -> 4
+   // (“C# is an elegant and type-safe object-oriented language") -> 6.57
+   Console.WriteLine(GetAverageWordLength("023 123"));
+   Console.WriteLine(GetAverageWordLength("CPP Exercises.")); //6
+   Console.WriteLine(GetAverageWordLength("C# syntax is highly expressive, " +
+    "yet it is also simple and easy to learn.")); //4
+   Console.WriteLine(GetAverageWordLength("C# is an elegant and type-safe object-oriented language"));//6.57
+
+   //-------------------------------------------
+   Console.WriteLine("\n--- 3 ---");
+   //3 check whether a given string of characters can be transformed into a palindrome.
+   // Return true otherwise false.
+   // ("amamd") -> True
+   // ("pamamd") -> False
+   // ("ferre") -> True
+
+   Console.WriteLine(CanTransformToPalindrome("amamd"));    //T
+   Console.WriteLine(CanTransformToPalindrome("pamamd"));   //F
+   Console.WriteLine(CanTransformToPalindrome("ferre"));    //T
+   Console.WriteLine(CanTransformToPalindrome("dodoo"));    //T
+   Console.WriteLine(CanTransformToPalindrome("mammam"));   //T   
+
+   Console.WriteLine();
+
+   //-------------------------------------------
+   Console.WriteLine("\n--- 4 ---");
+   /* validate a password of length 7 to 16 characters with the following guidelines:
+   • Length between 7 and 16 characters.
+   • At least one lowercase letter (a-z).
+   • At least one uppercase letter (A-Z).
+   • At least one digit (0-9).
+   • Supported special characters: ! @ # $ % ^ & * ( ) + = _ - { } [ ] : ; " ' ? < > , .
+   */
+   
+   Console.WriteLine(IsPasswordValid("Suuu$21g@"));            //T
+   Console.WriteLine(IsPasswordValid("Suuu$21g@~"));           //F
+   Console.WriteLine(IsPasswordValid("W#1g@"));                //F
+   Console.WriteLine(IsPasswordValid("sdsd723#$Amid"));        //T
+   Console.WriteLine(IsPasswordValid("sdsd723#$Amidkiouy"));   //F
+   Console.WriteLine(IsPasswordValid("a&&g@"));                //F
+
+   //-------------------------------------------
+   Console.WriteLine("\n--- 5 ---");
+   //check for repeated occurrences of words in a given string
+   /*
+   ("C# C# syntax is highly expressive, yet it is is also simple and easy to to learn learn.") -> 3 matches found
+   ("Red Green Green Black Black Green.") -> 2 matches found
+   */
+
+   Console.WriteLine(CountRepeatedWords(
+      "C# C# syntax is highly expressive, yet it is is is also simple and easy to to learn learn.")); //3
+   Console.WriteLine(CountRepeatedWords("Red Green Green Black Black Green.")); //2
+
+   //-------------------------------------------
+   Console.WriteLine("\n--- 6 ---");
+   //
+
 }
 }
