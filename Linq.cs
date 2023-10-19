@@ -34,7 +34,7 @@ public class Linq{
    Student s12;
    
    // downcasting
-   s12 = (Student)p;//it sees student properties 
+   s12 = (Student)p;//it can see student properties 
    Console.WriteLine(s12.age); //18
    
 
