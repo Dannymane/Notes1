@@ -68,7 +68,7 @@ public class Program{
       sb5.Insert(5," C#");  //Hello C# World!
 
       StringBuilder sb6 = new StringBuilder("Hello World!",50);
-      sb6.Remove(6, 6);     //Hello !        //(start index, number of characters to remove)
+      sb6.Remove(5, 6);     //Hello!        //(start index, number of characters to remove)
 
       StringBuilder sb7 = new StringBuilder("Hello World!");
       sb7.Replace("World", "C#"); //Hello C#!

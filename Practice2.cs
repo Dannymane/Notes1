@@ -88,7 +88,7 @@ public static int CountRepeatedWords(string inp){
             return obj.Value.GetHashCode();
         }
     }
-    public static void Main(string[] args){
+    public static void Mainw(string[] args){
    // 1
    Console.WriteLine("\n--- 1 ---");
    //check whether a given string is a valid Hex code or not

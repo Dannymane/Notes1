@@ -60,7 +60,6 @@ public class Program{
       return newBook;
    }
    
-   
    public static void NbDig(int n, int d) 
    {
       

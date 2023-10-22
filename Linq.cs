@@ -16,6 +16,7 @@ struct MyStruct{
       a = 0;
       b = 10;
    }
+
 }
 
 public class Person{
@@ -80,7 +81,6 @@ Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault()
    foreach(var s in studentsWithID5){
       System.Console.WriteLine(s.StudentID);
    }
-   
    // string collection
    IList<string> stringList = new List<string>() { 
       "C# Tutorials",
@@ -204,7 +204,7 @@ Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault()
    System.Console.WriteLine("\n//8");
 
    string[] cities =  { "ROME","LONDON","NAIROBI","CALIFORNIA","ZURICH","NEW DELHI","AMSTERDAM","ABU DHABI", "PARIS"}; 
-
+   
    
 
    // var resString = cities.Where(c => c[0].ToString() == "A" && c[c.Length-1].ToString() == "M").FirstOrDefault();
@@ -513,7 +513,7 @@ Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault()
       })
       .SelectMany(x => x.Items.DefaultIfEmpty(),
       (x, item) => new {
-         Id = item?.ItemId,
+         Id = item?.ItemId, //if item null -> just return null (will not try to access ItemId)
          Name = item?.ItemDes,
          Quantity = x.Purchase.PurQty
       }).ToList();
