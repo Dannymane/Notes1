@@ -38,16 +38,15 @@ public class Program{
 
       foreach(int i in Program.IteratorMethod())
       {
-            Console.WriteLine(i);
+         Console.WriteLine(i);
       }
 
       var array = Program.IteratorMethod().ToArray();
       Console.WriteLine(array[2]);
 
       Car c = new Car();
-      c.Drive();                      //Drive Car Drive
-
-      
+      c.Drive();                      //Drive
+                                       // Car Drive
       //StringBuilder
 
       StringBuilder sb1 = new StringBuilder();
@@ -89,21 +88,17 @@ public class Program{
       string inputString = "hello world! hello";
       Match match = regex.Match(inputString);
 
-      if (match.Success)
-      {
+      if (match.Success){
          Console.WriteLine("Match found at index {0} with length {1}", match.Index, match.Length);
          //Match found at index 0 with length 5
          Console.WriteLine(match.Value + " " + match.Name + " " + match.NextMatch());// hello 0 hello
-      }
-      else
-      {
+      }else{
          Console.WriteLine("No match found.");
       }
 
       MatchCollection matches = regex.Matches("hello world! hello again!");
 
-      foreach (Match match2 in matches)
-      {
+      foreach (Match match2 in matches){
          Console.WriteLine("Match found at index {0} with length {1}", match2.Index, match2.Length);
       }
 

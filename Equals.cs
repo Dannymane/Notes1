@@ -7,15 +7,15 @@ using System.Text.RegularExpressions;
 
 namespace Equals{
  public class Tst{
-      public int Value1{get;set;}
-      public int Value2{get;set;}
-      public Tst(int value1, int value2){
-         Value1 = value1;
-         Value2 = value2;
-      }
-      public void Test(object o){
-         Console.WriteLine(GetType().ToString() + " " + o.GetType().ToString());
-      }
+   public int Value1{get;set;}
+   public int Value2{get;set;}
+   public Tst(int value1, int value2){
+      Value1 = value1;
+      Value2 = value2;
+   }
+   public void Test(object o){
+      Console.WriteLine(GetType().ToString() + " " + o.GetType().ToString());
+   }
  }
 
  public class Age{

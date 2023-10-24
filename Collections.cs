@@ -58,11 +58,11 @@ public class Collections{
       string result;
 
       if(d1.TryGetValue("Japan", out result))
-         Console.WriteLine(result);
+         Console.WriteLine(result); //Tokyo
 
 
       if(d1.TryGetValue("qwerty", out result)) //false
-         Console.WriteLine(result);
+         Console.WriteLine(result); 
 
       foreach(var el in d1)
       {
@@ -250,10 +250,9 @@ public class Collections{
       var dwa = Enumerable.Range(1, 100).ToList();
       System.Console.WriteLine(String.Join("", dwa));
 
-      //LEARN STRING BUILDER
       // var p1 = new Person(); //error, because Person doesn't have default constructor when
          // we have defined constructor with parameters
-      Person.Ok();
+      Person.Ok(); //OK
    }
 
    public class User{
