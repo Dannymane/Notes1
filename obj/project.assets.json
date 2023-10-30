@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Work\\Material for preparing for the interview\\Notes1\\Notes1\\Notes1.csproj",
+      "projectUniqueName": "C:\\Work\\Material for preparing for the interview\\Notes1\\Notes1.csproj",
       "projectName": "Notes1",
-      "projectPath": "C:\\Work\\Material for preparing for the interview\\Notes1\\Notes1\\Notes1.csproj",
+      "projectPath": "C:\\Work\\Material for preparing for the interview\\Notes1\\Notes1.csproj",
       "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-      "outputPath": "C:\\Work\\Material for preparing for the interview\\Notes1\\Notes1\\obj\\",
+      "outputPath": "C:\\Work\\Material for preparing for the interview\\Notes1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
