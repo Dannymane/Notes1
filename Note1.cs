@@ -29,7 +29,8 @@ public class Program{
       yield return 1;
       yield return 2;
    }//main commit
-   public static void Mainw(){
+   //commit 1, Mainw() -> Mainc() 
+   public static void Mainc(){
       Console.WriteLine(Guid.NewGuid().ToString()); //7497599a-d2fc-43bc-84b1-ed67156f7672
 
       //Can not create an instance of the static class 
