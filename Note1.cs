@@ -73,34 +73,6 @@ public class Program{
       sb7.Replace("World", "C#"); //Hello C#!
 
 
-      //Regex
-      //using System.Text.RegularExpressions;
-
-      // - IsMatch(string input)	Returns true if the pattern matches the input string.
-      // - Match(string input)	Returns the first occurrence of the pattern in the input string.
-      // - Matches(string input)	Returns all occurrences of the pattern in the input string.
-      // - Replace(string input, string replacement)	Replaces all occurrences of the pattern in the input string
-         // with the replacement string.
-      // - Split(String)	Splits an input string into an array of substrings at the positions defined by a
-         // regular expression pattern.
-
-      Regex regex = new Regex(@"hello"); // @ is used to ignore the escape characters like \n \t
-      string inputString = "hello world! hello";
-      Match match = regex.Match(inputString);
-
-      if (match.Success){
-         Console.WriteLine("Match found at index {0} with length {1}", match.Index, match.Length);
-         //Match found at index 0 with length 5
-         Console.WriteLine(match.Value + " " + match.Name + " " + match.NextMatch());// hello 0 hello
-      }else{
-         Console.WriteLine("No match found.");
-      }
-
-      MatchCollection matches = regex.Matches("hello world! hello again!");
-
-      foreach (Match match2 in matches){
-         Console.WriteLine("Match found at index {0} with length {1}", match2.Index, match2.Length);
-      }
 
 
    }
