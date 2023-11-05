@@ -6,7 +6,7 @@ namespace RegexNamespace;
 // https://www.csharptutorial.net/csharp-regular-expression/
 
 public class Program{
-public static void Main(){
+public static void Mainw(){
    
    //Regex
    //using System.Text.RegularExpressions;
