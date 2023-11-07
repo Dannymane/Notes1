@@ -13,6 +13,14 @@ struct Struct {
    }
 }
 
+public enum GradeScale
+{
+   ndst = 2,
+   dst = 3,
+   db = 4,
+   bdb = 5,
+}
+
 public abstract class AbstractClass{
    public abstract void Test(); //can't have a body
 }
@@ -22,9 +30,13 @@ public class MyClass : AbstractClass{
    }
 }
 public class Program{
-   public static void Maine(){
+   public static void Mainw(){
       Struct s = new Struct(1,2);
       s.Test();
       Console.WriteLine(s.Value1); //1
-   }
+
+      GradeScale g = GradeScale.bdb;
+      var grades = new List<GradeScale>() { GradeScale.ndst, GradeScale.db, GradeScale.db };
+        Console.WriteLine(grades.Average(g => (int)g));
+    }
 }

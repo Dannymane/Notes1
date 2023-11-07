@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -602,6 +603,35 @@ Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault()
    Test t11 = new Test();
    t11.Age = 10;
    
+   IList<Student> studentList = new List<Student>() { 
+        new Student() { StudentID = 1, StudentName = "John", age = 18 } ,
+        new Student() { StudentID = 2, StudentName = "Steve",  age = 21 } ,
+        new Student() { StudentID = 3, StudentName = "Bill",  age = 18 } ,
+        new Student() { StudentID = 4, StudentName = "Ram" , age = 20 } ,
+        new Student() { StudentID = 5, StudentName = "Abram", age = 21 } 
+    };
+
+   IEnumerable<IGrouping<int, Student>> groupedResult = studentList.GroupBy(s => s.age ?? 0);
+
+   foreach (IGrouping<int, Student> ageGroup in groupedResult)
+   {
+      Console.WriteLine("Age Group: {0}", ageGroup.Key);  //Each group has a key 
+               
+      foreach(Student s in ageGroup)  //Each group has a inner collection  
+         Console.WriteLine("Student Name: {0}", s.StudentName);
+   }
+
+   Dictionary<int, string[]> studentDictionary = groupedResult
+      .ToDictionary(el => el.Key, el => el.Select(s => s.StudentName).ToArray()); 
+
+   foreach(KeyValuePair<int, string[]> age in studentDictionary){
+      Console.WriteLine("\nKey: "+age.Key);  //Key: 18
+      foreach(string name in age.Value)      //John
+         Console.WriteLine(name);            //Bill 
+   }                                         // ...
+
+
+
    }
 }
 public interface ITest{
