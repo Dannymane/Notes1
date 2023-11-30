@@ -56,7 +56,12 @@ public static void Mainw(string[] args){
 	Console.WriteLine(c1); //10
 	Console.WriteLine(c2); //11
 
-}
+
+    string str1 = "C:\\folder";
+    string str2 = "file";
+    Console.WriteLine(Path.Combine(str1, str2)); //C:\folder\file
+
+    }
 }
 
 
