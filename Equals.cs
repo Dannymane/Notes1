@@ -1,5 +1,3 @@
-
-
 using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -63,7 +61,8 @@ public class Equals{
          - strings are equal when they have the same value or both null
 
             Equals():
-         - value types ... same, but with boxing/unboxing and some exceptions
+         - value types ... same, but with boxing/unboxing (boxed value (obj) are equal only to the value that boxed)
+               and some exceptions
          - reference types (except string) are equal when they refer to the same Object
          - string.Equals(o) 'o' can be an object that refer to string.
          - strings are equal when they have the same value
@@ -112,8 +111,8 @@ public class Equals{
       int value1 = 12;
       long value2 = 12;
 
-      object object1 = value1;
-      object object2 = value2;
+      Object object1 = value1;
+      Object object2 = value2;
 
       Console.WriteLine(object1.Equals(object2));              // F
       Console.WriteLine(value1.Equals(value2));                            // F
@@ -121,7 +120,7 @@ public class Equals{
       Console.WriteLine(object2.Equals(object1));              // F
       Console.WriteLine(value2.Equals(value1));                            // T 
 
-      Console.WriteLine(object2.Equals(value1));              // F
+      Console.WriteLine(object2.Equals(value1));               // F
       Console.WriteLine(object2.Equals(value2));                           // T
    
 

@@ -31,7 +31,7 @@ public class Student : Person{
 public class Linq{
    public static async Task Mainw(string[] args){
 
-   Person p = new Student(){StudentID = 1, StudentName = "John", age = 18}; //it sees only Person properties
+   Person p = new Student(){StudentID = 1, StudentName = "John", age = 18, Name = "Jo"}; //it sees only Person properties
    Student s12;
    
    // downcasting
