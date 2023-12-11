@@ -8,10 +8,11 @@ namespace Notes1
 {
     public class Note4_MemoryUsage
     {
-        public static void Main(string[] args)
+        public static void Mainw(string[] args)
         {
             //(true) forces garbage collection - so don't forget to "use" tested element in furhter code
             long currentMemoryUsage = System.GC.GetTotalMemory(true);
+
         }
     }
 }
