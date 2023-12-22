@@ -27,6 +27,9 @@ namespace Notes1
             Console.WriteLine(UNKNOWN_ARTICLES.Contains(article.ToLower()));
             Console.WriteLine(UNKNOWN_ARTICLES.Any(keyword => article.ToLower().Contains(keyword)));
 
+            DateTime? Null = null;
+            System.Console.WriteLine(Null >= DateTime.Now);
+
         }
     }
 }
