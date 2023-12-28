@@ -24,11 +24,12 @@ namespace Notes1
 
             string article = "art. Wgr Daniel";
             string[] UNKNOWN_ARTICLES = { "nieznany artykuł", "art.wgr", "art. wgr", };
-            Console.WriteLine(UNKNOWN_ARTICLES.Contains(article.ToLower()));
-            Console.WriteLine(UNKNOWN_ARTICLES.Any(keyword => article.ToLower().Contains(keyword)));
+            Console.WriteLine(UNKNOWN_ARTICLES.Contains(article.ToLower())); //false
+            Console.WriteLine(UNKNOWN_ARTICLES.Any(keyword => article.ToLower().Contains(keyword))); //true
 
             DateTime? Null = null;
-            System.Console.WriteLine(Null >= DateTime.Now);
+            System.Console.WriteLine(Null >= DateTime.Now); //false
+            System.Console.WriteLine(Null <= DateTime.Now); //false
 
         }
     }

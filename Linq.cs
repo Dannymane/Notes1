@@ -654,34 +654,4 @@ public class Purchase
     public int PurQty { get; set; }
 }
 
-public class LockClass
-{
-    private Object lockObject;
-    private int _value;
-    public void Value(int v)
-    {
-        _value = v;
-    }
 
-    public void MultiplyValue(int v)
-    {
-        _value = _value * v;
-    }
-    public void MultiplyValueLock(int v)
-    {
-        lock (lockObject)
-        {
-            _value = _value * v;
-        }
-    }
-    public int Value()
-    {
-        return _value;
-    }
-
-    public LockClass()
-    {
-        lockObject = new Object();
-        _value = 1;
-    }
-}
