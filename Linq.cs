@@ -589,9 +589,11 @@ public class Linq
            .ForEach(r => System.Console.WriteLine(r.ItemId + " " + r.ItemDes));
 
 
-        var numbers2 = new List<int> { 1, 2, 13, 0, 20, 7, 4, 5, 6, 3, 8, 9, 12 };
-        var result2 = numbers2.OrderBy(n => n).ToList();
+        var stringNumbers1 = new List<string> { "1", "2", "13", "0", "20", "7", "4", "5", "6", "a", "3", "8", "9", "12" };
+        var result2 = stringNumbers1.OrderBy(n => n).ToList();
         result2.ForEach(r => System.Console.WriteLine(r));
+
+        Console.WriteLine("--- Storing OrderBy(n => int.TryParse(n, out int nb) ? nb : -1) ---");
 
         var stringNumbers2 = new List<string> { "1", "2", "13", "0", "20", "7", "4", "5", "6", "a", "3", "8", "9", "12" };
         var stringResult2 = stringNumbers2.OrderBy(n => int.TryParse(n, out int nb) ? nb : -1).ToList();
