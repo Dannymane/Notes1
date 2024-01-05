@@ -6,7 +6,7 @@ namespace RegexNamespace;
 // https://www.csharptutorial.net/csharp-regular-expression/
 
 public class Program{
-public static void Mainw(){
+public static void Main(){
    
    //Regex
    //using System.Text.RegularExpressions;
@@ -151,7 +151,26 @@ INSERT INTO  pracownicy VALUES (1250, 'Nowakowska', 'Anna', 'Czlonek zarzadu', 1
    Console.WriteLine("\n--- 6 ---");
    //
    
-         
+//    string input2 = @"P1105321901262011231!32300600251080
+// P1105321901262111231!32300950246140
+// P1105321901262211231!32300950246140
+// P1105321901262311231!32300600251080
+// P1105321901262411231!32300600251080";
+//    var lines = input2.Split("\n");
+ 
+//    Array.ForEach(lines, l => Console.WriteLine(l));
+//    Console.WriteLine(lines.All(line => Regex.IsMatch(line, @"^P\d{19}!\d{14}$"))); 
+
+   string input2 = @"P1105321901262011231!32300600251080
+P1105321901262111231!32300950246140
+P1105321901262211231!32300950246140
+P1105321901262311231!32300600251080
+P1105321901262411231!32300600251080";
+var lines = input2.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+Array.ForEach(lines, l => Console.WriteLine(l));
+Console.WriteLine(lines.All(line => Regex.IsMatch(line, @"^P\d{19}!\d{14}$")));
+
 }
 //2 calculate the average word length in a given string. Round the average length up to two decimal places
 public static double GetAverageWordLength(string input){
