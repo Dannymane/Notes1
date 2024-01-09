@@ -80,7 +80,7 @@ namespace Practice
             System.Console.WriteLine(digits.Where(str => Regex.IsMatch(str.ToString(), $"{d}"))
                                            .Count());
         }
-        public static void Main()
+        public static void Mainw()
         {
 
 

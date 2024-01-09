@@ -8,7 +8,7 @@ namespace Notes1
 {
     internal class Note5_Async
     {
-        public static async Task Main(string[] args)
+        public static async Task Mainw(string[] args)
         {
             // Lock Object
             LockClass lc = new LockClass();//value = 1

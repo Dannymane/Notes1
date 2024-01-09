@@ -31,6 +31,11 @@ namespace Notes1
             System.Console.WriteLine(Null >= DateTime.Now); //false
             System.Console.WriteLine(Null <= DateTime.Now); //false
 
+            string s = "022.34";
+            Console.WriteLine(Double.Parse(s));
+
+            string s2 = "Long line with 4124321\ndasdw\n";
+            Console.WriteLine(s2.Remove(-1));
         }
     }
 }
