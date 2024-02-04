@@ -602,7 +602,15 @@ public class Linq
 
         Test t11 = new Test();
         t11.Age = 10;
+        
+        //31
+        Console.WriteLine("\n//31\n");
 
+        var scoreString = "10, 5, 0, 8, 10, 1, 4, 0, 10, 1";
+        var score = scoreString.Split(", ").ToList().Select(n => int.Parse(n)).ToArray();
+        Array.ForEach(score.OrderBy(n => n).ToArray(), nu => Console.WriteLine(nu));
+        Console.WriteLine(score.OrderBy(n => n).Skip(3).Sum());
+        
     }
 }
 public interface ITest
