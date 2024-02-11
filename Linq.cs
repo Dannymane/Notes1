@@ -33,7 +33,7 @@ public class Student : Person
 }
 public class Linq
 {
-    public static void Mainw(string[] args)
+    public static void Main(string[] args)
     {
 
         Person p = new Student() { StudentID = 1, StudentName = "John", age = 18, Name = "Jo" }; //it sees only Person properties
@@ -603,14 +603,37 @@ public class Linq
         Test t11 = new Test();
         t11.Age = 10;
         
-        //31
-        Console.WriteLine("\n//31\n");
+        //31 Pluralsight challenge 1
+        Console.WriteLine("\n//31 challenge score\n");
 
         var scoreString = "10, 5, 0, 8, 10, 1, 4, 0, 10, 1";
         var score = scoreString.Split(", ").ToList().Select(n => int.Parse(n)).ToArray();
         Array.ForEach(score.OrderBy(n => n).ToArray(), nu => Console.WriteLine(nu));
         Console.WriteLine(score.OrderBy(n => n).Skip(3).Sum());
         
+        //32 Pluralsight challenge 2
+        Console.WriteLine("\n//32 challenge album duration\n");
+        string duration = "2:54,3:48,4:51,3:32,6:15,4:08,5:17,3:13,4:16,3:55,4:53,5:35,4:24";
+
+        var minutesSeconds = duration.Split(new char[]{':',','})
+                                  .GroupBy(n => n.Length)
+                                  .Select(gr => gr.Select(strNumb => int.Parse(strNumb)).Sum())
+                                  .ToList();
+        string result3 = (minutesSeconds[0] + minutesSeconds[1]/60).ToString() + ":" + (minutesSeconds[1]%60).ToString();
+        Console.WriteLine(result3); //57:1
+
+
+        Console.WriteLine(TimeSpan.FromSeconds(duration.Split(",") 
+                                  .Select(str => TimeSpan.Parse("00:0" + str).TotalSeconds)
+                                  .Sum())
+        ); //00:57:01
+
+        Console.WriteLine(duration.Split(",") 
+                                  .Select(str => TimeSpan.Parse("0:" + str))
+                                  .Aggregate(TimeSpan.Zero, (t1, t2) => t1 + t2) //TimeSpan.Zero - start parameter(unnecessary)
+        ); //00:57:01
+
+
     }
 }
 public interface ITest
