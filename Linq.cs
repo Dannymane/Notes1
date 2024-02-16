@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualBasic;
 
 struct MyStruct
 {
@@ -31,9 +33,57 @@ public class Student : Person
     public int? age { get; set; }
     public int? GrPoint { get; set; }
 }
+public interface ITest
+{
+    protected int Age { get; set; }
+
+}
+public class Test : ITest
+{
+    public int Age { get; set; }
+}
+
+//extension class
+public static class ExtensionMethodClass
+{
+    //extension method
+    public static Student IncreaseAge(this Student s, int increase)
+    {
+        s.age += increase;
+        return s;
+    }
+}
+
+public class Item_mast
+{
+    public int ItemId { get; set; }
+    public string ItemDes { get; set; }
+}
+public class Item_mast_comparer : IEqualityComparer<Item_mast>
+{
+    public bool Equals(Item_mast? x, Item_mast? y)
+    {
+        if (x?.ItemId == y?.ItemId && x?.ItemDes == y?.ItemDes)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public int GetHashCode([DisallowNull] Item_mast obj)
+    {
+        return obj.ItemId.GetHashCode() + obj.ItemDes.GetHashCode();
+    }
+}
+public class Purchase
+{
+    public int InvNo { get; set; }
+    public int ItemId { get; set; }
+    public int PurQty { get; set; }
+}
 public class Linq
 {
-    public static void Main(string[] args)
+    public static void Mainw(string[] args)
     {
 
         Person p = new Student() { StudentID = 1, StudentName = "John", age = 18, Name = "Jo" }; //it sees only Person properties
@@ -633,56 +683,57 @@ public class Linq
                                   .Aggregate(TimeSpan.Zero, (t1, t2) => t1 + t2) //TimeSpan.Zero - start parameter(unnecessary)
         ); //00:57:01
 
+        //33 Pluralsight challenge expand the range
+        Console.WriteLine("\n//33 challenge expand the range\n");
+
+        string range = "2,3-5,7";
+        var enumerableRange = range.Split(",")
+                                   .Select(el => el.Length == 1 ? new int[]{int.Parse(el)} 
+                                       : Enumerable.Range(int.Parse(el.Split("-")[0]), int.Parse(el.Split("-")[1]) - int.Parse(el.Split("-")[0]) + 1).ToArray())
+                                   .SelectMany(ar => ar);
+
+        Console.WriteLine(String.Join(",", enumerableRange));
+
+        var enumerableRange2 = range.Split(",")
+                                    .Select(str => str.Split("-"))
+                                    .Select(el => new {
+                                        First = int.Parse(el[0]),
+                                        Last = int.Parse(el.Last())
+                                    })
+                                    .SelectMany(x => Enumerable.Range(x.First, x.Last - x.First + 1));
+
+        Console.WriteLine(String.Join(",", enumerableRange2));
+
+        string rangeAdvanced = "6,1-3,2-4";
+
+        var enumerableRangeAdvanced = rangeAdvanced.Split(",")
+                                    .Select(str => str.Split("-"))
+                                    .Select(el => new {
+                                        First = int.Parse(el[0]),
+                                        Last = int.Parse(el.Last())
+                                    })
+                                    .SelectMany(x => Enumerable.Range(x.First, x.Last - x.First + 1))
+                                    .Distinct()
+                                    .OrderBy(n => n);
+
+        Console.WriteLine(String.Join(",", enumerableRangeAdvanced));
+
+        //34 Pluralsight challenge Sort by age
+        Console.WriteLine("\n//34 challenge Sort by age\n");
+        string ageData = "Fraster Foster, 17/03/1998; Kyle Walker-Peters, 13/04/1997; Jan Bednarek, 12/04/1996; James Ward-Prows, 01/11/1994; ";
+        
+        ageData.Trim()
+               .Split(";")
+               .Where(str => !String.IsNullOrEmpty(str))
+               .Select(person => person.Trim().Replace(",", "").Split(" "))
+               .OrderBy(p => DateTime.Now - DateTime.ParseExact(p[2], "dd/MM/yyyy", CultureInfo.InvariantCulture))
+               .Select(p => p[0] + " " + p[2])
+               .ToList()
+               .ForEach(line => Console.WriteLine(line));
+
 
     }
 }
-public interface ITest
-{
-    protected int Age { get; set; }
 
-}
-public class Test : ITest
-{
-    public int Age { get; set; }
-}
-
-//extension class
-public static class ExtensionMethodClass
-{
-    //extension method
-    public static Student IncreaseAge(this Student s, int increase)
-    {
-        s.age += increase;
-        return s;
-    }
-}
-
-public class Item_mast
-{
-    public int ItemId { get; set; }
-    public string ItemDes { get; set; }
-}
-public class Item_mast_comparer : IEqualityComparer<Item_mast>
-{
-    public bool Equals(Item_mast? x, Item_mast? y)
-    {
-        if (x?.ItemId == y?.ItemId && x?.ItemDes == y?.ItemDes)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public int GetHashCode([DisallowNull] Item_mast obj)
-    {
-        return obj.ItemId.GetHashCode() + obj.ItemDes.GetHashCode();
-    }
-}
-public class Purchase
-{
-    public int InvNo { get; set; }
-    public int ItemId { get; set; }
-    public int PurQty { get; set; }
-}
 
 

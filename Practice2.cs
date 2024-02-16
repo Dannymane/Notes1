@@ -21,5 +21,15 @@ public class Practice2
         var dates = new List<DateTime>() { DateTime.Now, DateTime.Now.AddDays(1), DateTime.Now.AddDays(2) };
         dates.OrderBy(d => d).ToList().ForEach(d => Console.WriteLine(d));
         Console.WriteLine(dates.First());
+
+        object[] values = new object[1];
+        if(values[0] == null)
+        {
+            Console.WriteLine("null");
+        }
+        if (values[0] is TimeSpan)
+        {
+            Console.WriteLine("TimeSpan");
+        }
     }
 }
