@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using Microsoft.VisualBasic;
 
 struct MyStruct
@@ -83,7 +84,24 @@ public class Purchase
 }
 public class Linq
 {
-    public static void Mainw(string[] args)
+    internal static int? GetAge(string dateOfBirth, string? format = null){
+        dateOfBirth = dateOfBirth.Trim();
+
+        if(!string.IsNullOrEmpty(format))
+        {
+            if(DateTime.TryParseExact(dateOfBirth, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateOfBirthDT))
+                return (int)(DateTime.Now - dateOfBirthDT).TotalDays/365;
+            return null;
+        }
+
+        string[] formats = { "dd/MM/yyyy", "dd-MM-YYYY" };
+
+        if (DateTime.TryParseExact(dateOfBirth, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dateOfBirthDateTime))
+            return (int)(DateTime.Now - dateOfBirthDateTime).TotalDays/365;
+
+        return null;
+    }
+    public static void Main(string[] args)
     {
 
         Person p = new Student() { StudentID = 1, StudentName = "John", age = 18, Name = "Jo" }; //it sees only Person properties
@@ -718,7 +736,7 @@ public class Linq
 
         Console.WriteLine(String.Join(",", enumerableRangeAdvanced));
 
-        //34 Pluralsight challenge Sort by age
+        //34 Pluralsight challenge Sort by age and show "Name age"
         Console.WriteLine("\n//34 challenge Sort by age\n");
         string ageData = "Fraster Foster, 17/03/1998; Kyle Walker-Peters, 13/04/1997; Jan Bednarek, 12/04/1996; James Ward-Prows, 01/11/1994; ";
         
@@ -730,8 +748,37 @@ public class Linq
                .Select(p => p[0] + " " + p[2])
                .ToList()
                .ForEach(line => Console.WriteLine(line));
+        
+        Console.WriteLine();
 
+        ageData.Trim()
+               .Split(";")
+               .Where(str => !string.IsNullOrEmpty(str))
+               .Select(str => str.Split(","))
+               .Select(gr => new {
+                    Credentials = gr[0].Trim(),
+                    DateOfBirth = DateTime.ParseExact(gr[1].Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture)
+               })
+               .OrderByDescending(p => p.DateOfBirth)
+               .Select(p => p.Credentials.PadRight(20) + " " + ((int)(DateTime.Today - p.DateOfBirth).TotalDays/365).ToString())
+               .ToList()
+               .ForEach(p => Console.WriteLine(p));
+        
+        Console.WriteLine();
+        string ageData2 = "Fraster Foster, 17/031998; Kyle Walker-Peters, 13/04/1997; Jan Bednarek, 12/04/1996; James Ward-Prows, 01/11/1994; ";
 
+        ageData2.Trim()
+               .Split(";")
+               .Where(str => !string.IsNullOrEmpty(str))
+               .Select(str => str.Split(","))
+               .Select(gr => new {
+                    Credentials = gr[0].Trim(),
+                    Age = GetAge(gr[1])
+               })
+               .OrderByDescending(p => p?.Age ?? 0)
+               .Select(p => p.Credentials.PadRight(20) + " " + p?.Age ?? "error")
+               .ToList()
+               .ForEach(p => Console.WriteLine(p));
     }
 }
 

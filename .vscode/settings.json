@@ -1,4 +1,6 @@
 {
     "editor.insertSpaces": false,
-    "editor.tabCompletion": "off"
+    "editor.tabCompletion": "off",
+    // "editor.parameterHints.enabled": false,
+    // "editor.suggest.showConstructors": false
 }
