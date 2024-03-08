@@ -22,9 +22,12 @@ public class MyClass : AbstractClass{
    }
 }
 public class Program{
-   public static void Maine(){
+   public static void Mainw(){
       Struct s = new Struct(1,2);
       s.Test();
       Console.WriteLine(s.Value1); //1
+
+      string str = "Hello";
+      Console.WriteLine(str[0]);
    }
 }

@@ -101,7 +101,7 @@ public class Linq
 
         return null;
     }
-    public static void Main(string[] args)
+    public static void Mainw(string[] args)
     {
 
         Person p = new Student() { StudentID = 1, StudentName = "John", age = 18, Name = "Jo" }; //it sees only Person properties
