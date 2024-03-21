@@ -1,7 +1,7 @@
-
-
 using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text;
 using Notes1;
 using Practice;
 
@@ -11,7 +11,11 @@ public class Linq2{
 		public string? Title {get; set;}
 		public int? Pages {get; set;}
 	}
+	
 	public static void Main(string[] args){
+
+		//1
+		Console.WriteLine("1. Books max pages\n");
 		var books = new[] {
 			new { Author = "Robert Martin", Title = "Clean Code", Pages = 464 },
 			new { Author = "Enrico Buonanno", Title = "Functional Programming in C#", Pages = 425 },
@@ -25,5 +29,40 @@ public class Linq2{
 		
 		Console.WriteLine(books.MaxBy(b => b.Pages)?.Title);//Patterns of Enterprise Application Architecture
 		Console.WriteLine(emptyBooks.MaxBy(b => b.Pages)?.Title); // ""
+
+		//2
+		Console.WriteLine("\n2. Concat - own extension method\n");
+		IEnumerable<decimal> decimalArray = new[] { 1.00m, 2.5m, 3.48m, 4m, 5.5m };
+		Console.WriteLine(decimalArray.Concat(";")); //1,00;2,5;3,48;4;5,5;
+
+		//3 
+		Console.WriteLine("\n3. Challenge - animals\n");
+		string animals = "Dog,Cat,Rabbit,Dog,Dog,Lizard,Cat,Cat,Dog,Rabbit,Guinea Pig,Dog";
+		var countedAnimals = animals.CountAnimals(",");
+		foreach(var a in countedAnimals)
+			Console.WriteLine(a);
 	}
 }
+
+public static class MyLinqExtensions{
+		public static string Concat<T>(this IEnumerable<T> collection, string separator){
+			// StringBuilder result = new StringBuilder();
+			// foreach(T elem in collection)
+			// 	result.Append((elem?.ToString() ?? " ") + separator); 
+			
+			// return result.ToString();
+
+			return string.Join(separator, collection);
+		}
+
+		public static dynamic CountAnimals(this string animals, string separator){
+			var countedAnimals = animals.Split(separator)
+				.GroupBy(a => a)
+				.Select(g => new {
+					Animal = g.Key,
+					Quantity = g.Count()
+				});
+
+			return countedAnimals;
+		}
+	}
