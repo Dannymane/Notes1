@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
@@ -38,9 +39,26 @@ public class Linq2{
 		//3 
 		Console.WriteLine("\n3. Challenge - animals\n");
 		string animals = "Dog,Cat,Rabbit,Dog,Dog,Lizard,Cat,Cat,Dog,Rabbit,Guinea Pig,Dog";
-		var countedAnimals = animals.CountAnimals(",");
+		var countedAnimals = animals.CountDogsCatsAndOthers(",");
 		foreach(var a in countedAnimals)
 			Console.WriteLine(a);
+
+		//4
+		Console.WriteLine("\n4. Challenge - Swim Length Times\n");
+		string timesString = "00:45,01:32,02:18,03:01,03:44,04:31,05:19,06:01,06:47,07:35";
+		//convert it into the sequence:
+		//Length 1: Start = 0:00 End = 0:45
+		//Length 2: Start = 0:45 End = 1:32
+		//...
+
+		var times = timesString.Split(",")
+			.Select(str => TimeSpan.Parse("00:" + str))
+			.ToList();
+
+		foreach(var t in times){
+			Console.WriteLine(t);
+		}
+
 	}
 }
 
@@ -55,9 +73,10 @@ public static class MyLinqExtensions{
 			return string.Join(separator, collection);
 		}
 
-		public static dynamic CountAnimals(this string animals, string separator){
+		public static dynamic CountDogsCatsAndOthers(this string animals, string separator){
 			var countedAnimals = animals.Split(separator)
-				.GroupBy(a => a)
+				.GroupBy(a => (a != "Dog" && a != "Cat") ? "Other" : a)
+				//or GroupBy(a => a switch {"Dog" or "Cat" => a, _ => "Other"})
 				.Select(g => new {
 					Animal = g.Key,
 					Quantity = g.Count()
