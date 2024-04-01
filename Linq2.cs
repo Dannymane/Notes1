@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Notes1;
 using Practice;
+using System.Linq;
 
 public class Linq2{
 	public class Book{
@@ -24,7 +25,7 @@ public class Linq2{
 			new { Author = "Bill Wagner", Title = "Effective C#", Pages = 328 },
 		};
 		var emptyBooks = new List<Book>();
-		// books.FirstOrDefault(b => b.Pages == books.Max(b => b.Pages))?.Title //Bad solution - for every book it will iterate over whole books
+		// books.FirstOrDefault(b => b.Pages == books.Max(b => b.Pages))?.Title //Bad solution - for every book it will iterate over all books
 		var maxPages = books.Max(b => b.Pages);
 		Console.WriteLine(books.FirstOrDefault(b => b.Pages ==maxPages)?.Title);//Patterns of Enterprise Application Architecture
 		
@@ -43,7 +44,7 @@ public class Linq2{
 		foreach(var a in countedAnimals)
 			Console.WriteLine(a);
 
-		//4
+		//4 Linq Zip method
 		Console.WriteLine("\n4. Challenge - Swim Length Times\n");
 		string timesString = "00:45,01:32,02:18,03:01,03:44,04:31,05:19,06:01,06:47,07:35";
 		//convert it into the sequence:
@@ -51,13 +52,16 @@ public class Linq2{
 		//Length 2: Start = 0:45 End = 1:32
 		//...
 
-		var times = timesString.Split(",")
-			.Select(str => TimeSpan.Parse("00:" + str))
-			.ToList();
+		var timesStart = String.Concat("00:00,", timesString);
+		timesStart.Split(",")
+			.Zip(timesString.Split(","),
+			(start, end) => new {
+				Start = start,
+				End = end
+			})
+			.ToList()
+			.ForEach(a => Console.WriteLine(a));
 
-		foreach(var t in times){
-			Console.WriteLine(t);
-		}
 
 	}
 }
