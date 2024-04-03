@@ -6,6 +6,7 @@ using System.Text;
 using Notes1;
 using Practice;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 
 public class Linq2{
 	public class Book{
@@ -62,7 +63,47 @@ public class Linq2{
 			.ToList()
 			.ForEach(a => Console.WriteLine(a));
 
+		//5 Chunk method. Split a collection of strings into some groups (every line = new group).
+        System.Console.WriteLine("\n//5. Chunk method\n");
 
+        string[] cities5 =
+        {
+         "ROME","LONDON","NAIROBI",
+         "CALIFORNIA", "ZURICH","NEW DELHI",
+         "AMSTERDAM", "ABU DHABI", "PARIS",
+         "NEW YORK"
+   		};
+		cities5.Chunk(3)
+		.ToList()
+		.ForEach(g => Console.WriteLine(string.Join(",", g)));
+		//output
+		/*	ROME,LONDON,NAIROBI
+			CALIFORNIA,ZURICH,NEW DELHI
+			AMSTERDAM,ABU DHABI,PARIS
+			NEW YORK
+		*/
+
+		//6 .
+        System.Console.WriteLine("\n//6. \n");
+		var sales = new int[] {0, 2, 1, 0, 4, 5, 2, 1, 0, 0, 2, 0, 4, 2, 1};
+
+		var max = 0;
+		sales.Aggregate((count, s) => {
+			if(s > 0) 
+			{ 
+				count = count + 1; 
+				if(max < count) 
+				{
+					max = count;
+				}
+			}else{
+				count = 0;
+			} 
+			return count; //returned result is passed into count after every iteration
+		});
+		Console.WriteLine(max);
+
+		
 	}
 }
 
