@@ -7,6 +7,7 @@ using Notes1;
 using Practice;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
+using System.Reflection.Metadata.Ecma335;
 
 public class Linq2{
 	public class Book{
@@ -14,6 +15,12 @@ public class Linq2{
 		public string? Title {get; set;}
 		public int? Pages {get; set;}
 	}
+
+	//collection.Select(UpperCase)
+	//same as (str => str.ToUpper), but you can write big code blocks
+	public static string UpperCase(string word){
+			return word.ToUpper();
+		}
 	
 	public static void Main(string[] args){
 
@@ -103,6 +110,12 @@ public class Linq2{
 		});
 		Console.WriteLine(max);
 
+		//7
+        Console.WriteLine("\n//7. \n");
+		
+		var words = new List<string> {"hi", "ok", "love"};
+		words.Select(UpperCase).ToList().ForEach(w => Console.WriteLine(w));
+
 		
 	}
 }
@@ -129,4 +142,6 @@ public static class MyLinqExtensions{
 
 			return countedAnimals;
 		}
+
+		
 	}
