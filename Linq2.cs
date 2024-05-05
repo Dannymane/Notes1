@@ -22,7 +22,7 @@ public class Linq2{
 			return word.ToUpper();
 		}
 	
-	public static void Main(string[] args){
+	public static void Mainw(string[] args){
 
 		//1
 		Console.WriteLine("1. Books max pages\n");
