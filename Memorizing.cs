@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace memorizing;
 
 public class Program{
-public static void Main(string[] args){
+public static void Mainw(string[] args){
 	//--1 Write extension method CountDogsCatsAndOthers(",") 
 	/* Result:
 	{ Animal = Dog, Quantity = 5 }

@@ -11,8 +11,34 @@ public class Practice2
         public int Percent { get; set; }
         public double MinutesToCheck { get; set; }
     }
+    public class B
+    {
+        public void Method()
+        {
+            Console.WriteLine("B.Method");
+            Method2();
+        }
 
-    public static void Mainw(string[] args)
+        public virtual void Method2()
+        {
+            Console.WriteLine("B.Method2");
+        }
+    }
+
+    public class A : B
+    {
+        public override void Method2()
+        {
+            Console.WriteLine("A.Method2");
+        }
+
+        public void CallBaseMethod()
+        {
+            base.Method();  // Call base class method
+        }
+    }
+
+    public static void Main(string[] args)
     {
 
         var o2 = new TimestampVariable() { Percent = 10, MinutesToCheck = 10 };
@@ -31,5 +57,8 @@ public class Practice2
         {
             Console.WriteLine("TimeSpan");
         }
+
+        var A = new A();
+        A.CallBaseMethod(); //B.Method A.Method2
     }
 }
