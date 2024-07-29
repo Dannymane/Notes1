@@ -60,5 +60,10 @@ public class Practice2
 
         var A = new A();
         A.CallBaseMethod(); //B.Method A.Method2
+
+        var numbersString = new List<string> { "01", "02", "12"};
+        foreach(var nS in numbersString){
+            Console.WriteLine(int.Parse(nS)); //1 2 12
+        }
     }
 }
