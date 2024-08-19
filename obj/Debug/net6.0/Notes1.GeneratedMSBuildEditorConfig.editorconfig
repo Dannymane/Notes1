@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Notes1
-build_property.ProjectDir = C:\Work\Material for preparing for the interview\Notes1\
+build_property.ProjectDir = C:\Repos\MyNotesVSCode\Notes1\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

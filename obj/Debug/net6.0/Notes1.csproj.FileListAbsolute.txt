@@ -26,3 +26,18 @@ C:\Work\Material for preparing for the interview\Notes1\Notes1\obj\Debug\net6.0\
 C:\Work\Material for preparing for the interview\Notes1\Notes1\obj\Debug\net6.0\Notes1.pdb
 C:\Work\Material for preparing for the interview\Notes1\Notes1\obj\Debug\net6.0\Notes1.genruntimeconfig.cache
 C:\Work\Material for preparing for the interview\Notes1\Notes1\obj\Debug\net6.0\ref\Notes1.dll
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.AssemblyInfoInputs.cache
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.AssemblyInfo.cs
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.csproj.CoreCompileInputs.cache
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.sourcelink.json
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.dll
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\refint\Notes1.dll
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.pdb
+C:\Repos\MyNotesVSCode\Notes1\bin\Debug\net6.0\Notes1.exe
+C:\Repos\MyNotesVSCode\Notes1\bin\Debug\net6.0\Notes1.deps.json
+C:\Repos\MyNotesVSCode\Notes1\bin\Debug\net6.0\Notes1.runtimeconfig.json
+C:\Repos\MyNotesVSCode\Notes1\bin\Debug\net6.0\Notes1.dll
+C:\Repos\MyNotesVSCode\Notes1\bin\Debug\net6.0\Notes1.pdb
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.genruntimeconfig.cache
+C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\ref\Notes1.dll
