@@ -49,6 +49,10 @@ public class Collections{
       d1.Add("USA6", "Washington");
       d1.Add("USA7", "Washington");
 
+                    var copyBaseFileToArchive = Task.Run(() => _fileService.SaveStreamFileInArchive(streamBaseFile, Path.Combine(targetFullPath, baseFileName)));
+                    var copyWgrFileToArchive = Task.Run(() => _fileService.SaveStreamFileInArchive(streamWgrFile, Path.Combine(targetFullPath, wgrFileName)));
+
+                    await Task.WhenAll(new List<Task> { copyBaseFileToArchive, copyWgrFileToArchive });
 
       foreach(KeyValuePair<string, string> r in d1)
          System.Console.WriteLine($"Key: {r.Key} Value: {r.Value}");
