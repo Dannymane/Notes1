@@ -38,7 +38,7 @@ public class Practice2
         }
     }
 
-    public static void Main(string[] args)
+    public static void Mainw(string[] args)
     {
 
         var o2 = new TimestampVariable() { Percent = 10, MinutesToCheck = 10 };

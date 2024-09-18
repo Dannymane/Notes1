@@ -40,10 +40,15 @@ public static void Mainw(string[] args){
 public static class ExtensionClass{
 	public static dynamic CountDogsCatsAndOthers(this string animals, string separator){
 		return animals.Split(separator)
-			.GroupBy(a => a != "Dog" && a != "Cat" ? "Other" : a)
+			.GroupBy(a => a != "Dog" &&
+			 a != "Cat" ? "Other" : a)
+			
 			.Select(g => new {
+			
 				Animal = g.Key,
+			
 				Quantity = g.Count()
+			
 			});
 	}
 }

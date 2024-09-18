@@ -8,11 +8,11 @@ namespace MyNamespace
         public string StartCity { get; set; }
         public string[] Waypoints { get; set; }
 
-        public TravelRoute(string startCity = null, string waypoints)
-        {
-            StartCity = startCity;
-            Waypoints = waypoints;
-        }
+        // public TravelRoute(string startCity = null, string waypoints)
+        // {
+        //     StartCity = startCity;
+        //     Waypoints = waypoints;
+        // }
 
         public void PrintRoute()
         {
@@ -25,15 +25,20 @@ namespace MyNamespace
         }
     }
 
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             // Create a TravelRoute object with waypoints but no start city
-            TravelRoute route = new TravelRoute(new List<string>() { "1", "2", "3" });
+            // TravelRoute route = new TravelRoute(new List<string>() { "1", "2", "3" });
 
             // Print the route information
-            route.PrintRoute();
+            // route.PrintRoute();
+        DateTime b = new DateTime(2024, 1, 1);
+        Console.WriteLine(b.Date);
+      //  Console.WriteLine(typeof(DateTime.Now.AddDays(1)));
+
+
         }
     }
 }

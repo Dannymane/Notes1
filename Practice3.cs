@@ -8,9 +8,9 @@ using Note1;
 public class Practice3{
 	public string TestProperty { get; set; }
 
-	public void DO(){
-	_testProperty = "ok";
-	}
+	// public void DO(){
+	// _testProperty = "ok";
+	// }
 public static void Mainw(string[] args){
 	var arr1 = new[] { 3, 9, 2, 8, 6, 5 };
 	arr1.Select(n => true).ToList().ForEach(n => Console.WriteLine(n));
