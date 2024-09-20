@@ -49,14 +49,14 @@ public class Collections{
       d1.Add("USA6", "Washington");
       d1.Add("USA7", "Washington");
 
-
       foreach(KeyValuePair<string, string> r in d1)
          System.Console.WriteLine($"Key: {r.Key} Value: {r.Value}");
 
       System.Console.WriteLine(d1["France"]);
 
       string result;
-
+      
+      //var value = d1["key"]; //KeyNotFoundException
       if(d1.TryGetValue("Japan", out result))
          Console.WriteLine(result); //Tokyo
 
