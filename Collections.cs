@@ -37,7 +37,8 @@ public class Collections{
       integers.FindAll(i => i > 25).ForEach(i => System.Console.WriteLine(i));//30 40
 
       //-------------------- Dictionary -----------------
-
+      //.ToDictionary( gr => gr.Key, gr => gr.Value);
+      
       Dictionary<string, string> d1 = new Dictionary<string, string>();
       d1.Add("France", "Paris");
       d1.Add("Japan", "Tokyo");
