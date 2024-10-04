@@ -56,6 +56,7 @@ public class Collections{
       System.Console.WriteLine(d1["France"]);
 
       string result;
+      string result2;
       
       //var value = d1["key"]; //KeyNotFoundException
       if(d1.TryGetValue("Japan", out result))
@@ -64,6 +65,8 @@ public class Collections{
 
       if(d1.TryGetValue("qwerty", out result)) //false
          Console.WriteLine(result); 
+
+      d1.TryGetValue("qwerty", out result2)//after that result2 is null!!!
 
       foreach(var el in d1)
       {
