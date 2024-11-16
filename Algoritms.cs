@@ -5,7 +5,7 @@ public class Solution {
         int leftI = 0;
 
         while(leftI <= rightI){
-            var middle = (rightI + leftI)/2;
+            var middle = (int)((rightI + leftI)/2);
 
             if(nums[middle] == target)
                 return middle;
