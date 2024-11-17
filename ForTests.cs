@@ -27,7 +27,7 @@ namespace MyNamespace
 
     public class Program
     {
-        public static void Main()
+        public static void Mainw()
         {
             // Create a TravelRoute object with waypoints but no start city
             // TravelRoute route = new TravelRoute(new List<string>() { "1", "2", "3" });
