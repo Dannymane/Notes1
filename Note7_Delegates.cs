@@ -8,7 +8,6 @@ namespace Notes1
 {
     delegate void Log(string message);
 
-
     internal class Note7_Delegates
     {
         List<string> Logs = new List<string>();
@@ -22,7 +21,7 @@ namespace Notes1
             Console.WriteLine("\"" + message + "\" has wirtten to logs.");
         }
 
-        public static void Mainw(string[] args)
+        public static void Main(string[] args)
         {
             Log log = delegateMethod1;
             log("method 1 works");
