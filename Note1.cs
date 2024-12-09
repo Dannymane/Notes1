@@ -54,7 +54,7 @@ public class Program{
       StringBuilder sb3 = new StringBuilder("Hello World!");
       StringBuilder sb4 = new StringBuilder("Hello World!", 50);
 
-      Console.WriteLine(sb4[7]); //W
+      Console.WriteLine(sb4[1]); //e
 
       string s4 = sb4.ToString();
 
@@ -73,6 +73,45 @@ public class Program{
       sb7.Replace("World", "C#"); //Hello C#!
 
 
+   //Test yourself
+
+      //1. StringBuilder with capacity 40
+
+      //2. StringBuilder "Hello World!"
+         Console.WriteLine();
+      //3. StringBuilder "Hello World!" with capacity 40
+         Console.WriteLine();
+      //4. write third letter of "Hello World!"
+      Console.WriteLine(); //l
+
+
+
+
+
+
+
+
+
+      //5. "Hello World!" -> Hello World!?
+      StringBuilder sb15 = new StringBuilder("Hello World!");
+      Console.WriteLine(sb15.Append("?"));
+
+      //6."Your total amount is " -> "Your total amount is 25,00"
+      StringBuilder sb16 = new StringBuilder("Your total amount is ");
+      int twentyFive = 25;
+      Console.WriteLine();
+      
+      //7. Hello World! -> Hello C# World!
+      StringBuilder sb17 = new StringBuilder("Hello World!");
+      Console.WriteLine();
+
+      //8. "Hello World!" -> "Hello!"
+      StringBuilder sb18 = new StringBuilder("Hello World!",50);
+      Console.WriteLine();    
+
+      //9. "Hello World!" -> "Hello C#!"
+      StringBuilder sb19 = new StringBuilder("Hello World!");
+      Console.WriteLine();
 
 
    }
