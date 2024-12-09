@@ -5,6 +5,9 @@ using System.Text.RegularExpressions; //Regex
 
 namespace Note1;
 
+//What to learn
+// exceptions in asynchronous programming
+
 public static class StaticClass{
    public static void Test(){
       Console.WriteLine("Test");
