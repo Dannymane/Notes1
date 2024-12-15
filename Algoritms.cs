@@ -17,18 +17,18 @@ public class Solution {
     }
     // ------------ Binary Search ------------
     public int BinarySearch(int[] nums, int target) {
-        int rightI = nums.Length - 1;
-        int leftI = 0;
+        int rI = nums.Length - 1;
+        int lI = 0;
 
-        while(leftI <= rightI){
-            var middle = (int)((rightI + leftI)/2);
-
-            if(nums[middle] == target)
-                return middle;
-            else if(nums[middle] < target)
-                leftI = middle + 1;
-            else
-                rightI = middle - 1;
+        while(lI <= rI)
+        {
+            int middle = (int)((rI + lI)/2);
+            if(nums[middle] < target)
+                lI = middle + 1;
+            else if(nums[middle] != target)
+                rI = middle - 1;
+            else 
+             return middle; 
         }
         return -1;
     }
@@ -149,13 +149,10 @@ public class Solution {
     public bool IsValidBST(TreeNode root) {
         return Evaluate(root, long.MinValue, long.MaxValue);
     }
-
     private bool Evaluate(TreeNode node, long min, long max)
     {
         if (node == null)
-        {
             return true;
-        }
 
         return (
             node.val > min &&

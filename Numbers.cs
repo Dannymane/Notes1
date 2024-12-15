@@ -43,7 +43,7 @@ public class notes7_parsing{
 
 
 		float.TryParse( "   12.333   ", 
-			System.Globalization.NumberStyles.Float, 
+			System.Globalization.NumberStyles.AllowExponent, 
 			System.Globalization.CultureInfo.InvariantCulture, 
 			out float fl1);
 		
