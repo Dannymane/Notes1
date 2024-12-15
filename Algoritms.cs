@@ -25,7 +25,7 @@ public class Solution {
 
             if(nums[middle] == target)
                 return middle;
-            else if(nums[middle] <= target)
+            else if(nums[middle] < target)
                 leftI = middle + 1;
             else
                 rightI = middle - 1;

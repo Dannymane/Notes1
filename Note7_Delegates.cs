@@ -21,7 +21,7 @@ namespace Notes1
             Console.WriteLine("\"" + message + "\" has wirtten to logs.");
         }
 
-        public static void Main(string[] args)
+        public static void Mainw(string[] args)
         {
             Log log = delegateMethod1;
             log("method 1 works");

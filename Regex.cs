@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions; //Regex
 
@@ -171,6 +172,7 @@ var lines = input2.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEnt
 Array.ForEach(lines, l => Console.WriteLine(l));
 Console.WriteLine(lines.All(line => Regex.IsMatch(line, @"^P\d{19}!\d{14}$")));
 
+
 }
 //2 calculate the average word length in a given string. Round the average length up to two decimal places
 public static double GetAverageWordLength(string input){
@@ -233,6 +235,33 @@ public static int CountRepeatedWords(string inp){
          .Split()
          .OrderBy(x => x)),
       @"(\w{2,}\s)\1").Distinct(new MatchComparer()).Count();
+}
+
+
+//Example of sophisticated regex usage and parsing
+public bool ValidateComplexCode(string input){
+
+        var pattern = @"^([A-Z]{2})(\d{6})([A-Z]{2})$";
+        var match1 = Regex.Match(input, pattern);
+
+        if (!match1.Success)
+            return false;
+
+        // Additional validation logic
+        string prefix = match1.Groups[1].Value;
+        string serialNumberStr = match1.Groups[2].Value;
+        string region = match1.Groups[3].Value;
+
+      //    if (!IsValidPrefix(prefix))
+      //    return false;
+
+      //   if (!IsValidRegion(region))
+      //       return false;
+
+      //   if (!TryParseSerialNumber(serialNumberStr, out int serialNumber))
+      //       return false;
+
+      return true;
 }
 
     public class MatchComparer : IEqualityComparer<Match>
