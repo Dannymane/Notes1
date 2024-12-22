@@ -1,8 +1,7 @@
 
+namespace Numbers;
 
-namespace notes7_parsing;
-
-public class notes7_parsing{
+public class Numbers{
 	public static void Mainw(string[] args){
 
 		//suffix

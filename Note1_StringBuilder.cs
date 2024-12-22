@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 using System.Text; //StringBuilder
 using System.Text.RegularExpressions; //Regex
@@ -115,6 +116,16 @@ public class Program{
       //9. "Hello World!" -> "Hello C#!"
       StringBuilder sb19 = new StringBuilder("Hello World!");
       Console.WriteLine();
+
+
+//---------------------- String ---------------------------
+      string word1 = "Hello";
+      string word2 = "hellO";
+      
+      //Ignore cases
+      Console.WriteLine(string.Equals(word1, word2, StringComparison.OrdinalIgnoreCase));
+
+      //Ordinal StringComparison based on comparison of Unicode code values
 
 
    }

@@ -159,6 +159,6 @@ public class Solution {
             node.val < max &&
             Evaluate(node.left, min, node.val) &&
             Evaluate(node.right, node.val, max)
-        );
+        );   
     }
 }
