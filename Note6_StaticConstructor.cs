@@ -6,8 +6,8 @@ public class Note6_StaticConstructor
 {
 	public static void Mainw(string[] args)
 	{
-		DerivedClass.Method(); // Trigger initialization
-		Console.WriteLine(DerivedClass.BaseStaticField);
+		DerivedClass.Method(); // Trigger initialization: Step 1, 2, Method()
+		Console.WriteLine(DerivedClass.BaseStaticField);// Step 3, 4, "0"
 
 		Base b1 = new Base();
 		Base b2 = new Base() {number = 5};
