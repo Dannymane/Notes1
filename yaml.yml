@@ -1,0 +1,4 @@
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: 'SR1/SR1.sln'
