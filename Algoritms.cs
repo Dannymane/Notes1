@@ -15,6 +15,42 @@ public class Solution {
         n3.right = n5;
         Console.WriteLine(s.IsValidBST(n1));
     }
+
+    // ------------ Binary Tree ------------
+    //there are inorder and preorder traversals of same binary tree, construct the binary tree
+    //time complexity: O(n), memory complexity: O(n) 
+    public class BT1 {
+    private int[] preorder_;
+    private Dictionary<int, int> inorderIndecies;
+
+    public TreeNode BuildTree(int[] preorder, int[] inorder) 
+    {
+        var n = preorder.Length;
+        preorder_ = preorder;
+
+        inorderIndecies = new Dictionary<int, int>();
+        for (int i = 0; i < n; i++)
+            inorderIndecies[inorder[i]] = i;
+
+        return BuildTree(0, n-1, 0, n-1);
+    }
+
+    public TreeNode BuildTree(int preStart, int preEnd, int inStart, int inEnd) 
+    {
+        if (preStart > preEnd || inStart > inEnd)
+            return null;
+
+        var root = new TreeNode(preorder_[preStart]);
+
+        var leftSize = inorderIndecies[root.val] - inStart;
+
+        root.left = BuildTree(preStart + 1, preStart + leftSize, inStart, inStart + leftSize);
+        root.right = BuildTree(preStart + leftSize + 1, preEnd, inStart + leftSize + 1, inEnd);
+
+        return root;
+    }
+}
+
     // ------------ Binary Search ------------
     public int BinarySearch(int[] nums, int target) {
         int rI = nums.Length - 1;

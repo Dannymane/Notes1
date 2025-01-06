@@ -25,6 +25,7 @@ public class Collections{
       ITest it = t;
       it.Test2(); //Test
 
+      //-------------------- List And Array -----------------
       var integers = new List<int>(){10,30,40};
       integers.Insert(1, 20);
       integers.ForEach(i => System.Console.WriteLine(i));//10 ,20, 30, 40
@@ -34,8 +35,24 @@ public class Collections{
       integersArray[0] = 1;
       Array.ForEach(integersArray, i => System.Console.WriteLine(i));//1 ,20, 30, 40
 
+      //use FindAll() instead of Where() when you want to get List<int> instead of IEnumerable<int>
       integers.FindAll(i => i > 25).ForEach(i => System.Console.WriteLine(i));//30 40
+      integers.Where(i => i > 25).ToList().ForEach(i => System.Console.WriteLine(i));//30 40
 
+      int[] a1 = { 1, 2, 3, 4, 5 };
+      int[] a2 = new int[] { 1, 2, 3, 4, 5 };
+      int[] a3 = new int[5]; // Creates an array with 5 elements, all initialized to 0
+      int[] a4 = new int[] { 1, 2, 3, 4, 5 }; // Creates an array with 5 elements, initialized to 1, 2, 3, 4, 5
+      bool[] flags = new bool[3]; // { false, false, false }
+      string[] names = new string[2]; // { null, null }
+      int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 } }; // 2D array
+      
+
+      int[] a5 = {1, 2, 3, 4, 5, 6};
+      var b = a5[..2];  // 1, 2
+      var c = a5[0..2]; // 1, 2
+      var d = a5[2..];  // 3, 4, 5, 6
+      Console.WriteLine(Array.IndexOf())); //2
       //-------------------- Dictionary -----------------
       //.ToDictionary( gr => gr.Key, gr => gr.Value);
       

@@ -52,5 +52,8 @@ public class Numbers{
 		int r3 = int.TryParse(n2, out int temp) ? temp : 11;
 		if (int.TryParse(n2, out int age) && age >= 0 && age <= 120) {}
 
+		int n6 = 0;
+		Console.WriteLine(n6++); //0
+		Console.WriteLine(n6); //1
 	}
 }
