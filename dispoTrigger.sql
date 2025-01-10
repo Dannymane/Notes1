@@ -15,10 +15,10 @@ BEGIN
 			,@newPokazDispo BIT
 			,@turnusBeginDate DATETIME
 			,@companyId INT
-			,@endOfCurrentYear DATETIME,
+            ,@endOfCurrentYear DATETIME,
 			@workPost VARCHAR(30);
 
-		SET @endOfCurrentYear = (CAST(CAST(YEAR(GETDATE()) AS VARCHAR(4)) + '-12-31' AS DATETIME));
+        SET @endOfCurrentYear = (CAST(CAST(YEAR(GETDATE()) AS VARCHAR(4)) + '-12-31' AS DATETIME));
 
 		SELECT @oldPokazDispo = deleted.dpp_pokazDispo
 		FROM deleted
@@ -60,7 +60,6 @@ BEGIN
 			DECLARE @IndividualDateFinishTurnus DATETIME
 			DECLARE @NewStartDateMainDocuments DATETIME
 			DECLARE @employeeAge INT
-			DECLARE @currentPitStake DECIMAL
 			DECLARE @NewEndYearDocuments DATETIME
 
 			SET @length = (
@@ -128,6 +127,7 @@ BEGIN
 					SET @NewEndYearDocuments = DATEFROMPARTS(YEAR(@NewStartDateMainDocuments), 12, 31);
 				ELSE
 					SET @NewEndYearDocuments = DATEFROMPARTS(YEAR(GETDATE()), 12, 31);
+
 
 				--Regulamin do zagranicznych umow
 				--EXEC [CreateWorkerDocument] @personalNr
@@ -202,183 +202,211 @@ BEGIN
 					,@turnusId
 					,@companyId
 
-			IF EXISTS (SELECT 1 FROM dbo.Turnusy WHERE ID = @turnusId AND KundenID = 217)
-				BEGIN
-				-- 228 Umowa o świadczenie usług Zagranica INV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 228 
-					  AND dp.dop_deleted = 0
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 228, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
-				END
-
-				-- 229 Umowa o świadczenie usług marketingowych INV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 229 
-					  AND dp.dop_deleted = 0
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 229, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
-				END
-
-				-- 231 Oświadczenie zleceniobiorcy INVV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 231 
-					  AND dp.dop_deleted = 0
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 231, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
-				END
-
-				-- 234 Informacja o przetwarzaniu danych osobowych INV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 234 
-					  AND dp.dop_deleted = 0
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 234, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
-				END
-
-				-- 235 Oświadczenie do A1 Invent Sp. z o.o. INV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 235 
-					  AND dp.dop_deleted = 0
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 235, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
-				END
-
-				-- 236 Oświadczenie do A1 Invent2GO Sp. z o.o. Sp. k. INV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 236 
-					  AND dp.dop_deleted = 0
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 236, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
-				END
-
-				-- Dokumenty generowane każdorazowo
-				-- 230 Aneks nr 1 INV KL
-				EXEC [CreateWorkerDocument] @personalNr, 230, @IndividualDateStartTurnus, @IndividualDateFinishTurnus, @modifiedBy, @turnusId, 6
-				
-				-- 232 Oświadczenie zleceniobiorcy do umowy - zakwaterowanie INV
-				EXEC [CreateWorkerDocument] @personalNr, 232, @IndividualDateStartTurnus, @IndividualDateFinishTurnus, @modifiedBy, @turnusId, 6
-
-				-- 233 Oświadczenie o okresie dyspozycyjności INV
-				EXEC [CreateWorkerDocument] @personalNr, 233, @IndividualDateStartTurnus, @IndividualDateFinishTurnus, @modifiedBy, @turnusId, 6
-				-- Koniec Dokumenty generowane każdorazowo
-				
-				-- 237 Regulamin do zagranicznych turnusów INV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 237
-					  AND dp.dop_deleted = 0
-					  AND @NewStartDateMainDocuments BETWEEN CAST(dop_waznyOd AS Date) AND CAST(dop_waznyDo AS Date)
-					  AND CAST(dop_waznyDo AS Date) = CAST(@NewEndYearDocuments AS Date)
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 237, @NewStartDateMainDocuments, @NewEndYearDocuments, @modifiedBy, @turnusId, 6
-				END
-
-				-- 238 Informator kierowcy INV
-				IF @kierowca = 1
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 238, @IndividualDateStartTurnus, @IndividualDateFinishTurnus, @modifiedBy, @turnusId, 6
-				END
-
-				-- 239 deklaracja rezygnacji z PPK INV - 
-				IF NOT EXISTS (
-						SELECT 1
-						FROM Dokument_pracownik dp
-						join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-						WHERE dp.dop_delId = 239
-							AND dp.dop_personalNr = @personalNr
-							AND  pd.pra_createdDate < dp.dop_createdDate
-							AND dp.dop_deleted = 0 AND dp.dop_companyId = 6 AND dp.dop_waznyDo is null
-						)
-						AND @employeeAge >= 18 AND @employeeAge <= 54
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr
-						,239
-						,NULL
-						,NULL
-						,@modifiedBy
-						,@turnusId
-					    ,6
-				END
-
-				-- 240 broszura informacyjna PPK INV
-				IF NOT EXISTS (
-						SELECT 1
-						FROM Dokument_pracownik dp
-						join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-						WHERE dp.dop_delId = 240
-							AND dp.dop_personalNr = @personalNr
-							AND  pd.pra_createdDate < dp.dop_createdDate
-							AND dp.dop_deleted = 0
-						)
-						AND @employeeAge >= 18 AND @employeeAge <= 70
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr
-						,240
-						,NULL
-						,NULL
-						,@modifiedBy
-						,@turnusId
-					    ,6
-				END
-
-                -- 241 Informator ubezpieczonego  - Karta do druku INV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 241 
-					  AND dp.dop_deleted = 0
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 241, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
-				END
-
-                -- 242 Prywatne Ubezpieczenie Medyczne - warunki INV
-				IF NOT EXISTS (
-					SELECT 1 
-					FROM Dokument_pracownik dp 
-					WHERE dp.dop_personalNr = @personalNr 
-					  AND dp.dop_delId = 242 
-					  AND dp.dop_deleted = 0
-				)
-				BEGIN
-					EXEC [CreateWorkerDocument] @personalNr, 242, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                --Only for  Invent2GO sp. z o.o. (most clients)
+                IF EXISTS ( SELECT 1 FROM dbo.Turnusy t
+                            INNER JOIN dbo.Kunde k ON t.KundenID = k.[Kunden-ID]
+                            WHERE t.ID = @turnusId AND (k.SubCompanyId = 1 OR k.SubCompanyId is null))
+                BEGIN
+                    --Harmonogram planowany
+                    IF EXISTS (
+                            SELECT 1
+                            FROM Dokument_pracownik
+                            WHERE dop_delId=8
+                            AND dop_personalNr = @personalNr
+                            AND dop_deleted = 0
+                            AND CAST( dop_waznyOd AS Date ) = CAST( @NewStartDateMainDocuments AS Date )
+                    )
+                    EXEC [CreateWorkerDocument] @personalNr
+                        ,134
+                        ,@NewStartDateMainDocuments
+                        ,@koniecTurnusu
+                        ,@modifiedBy
+                        ,@turnusId
+                        ,@companyId
                 END
-		END
-											  
+
+                --Only for  Invent sp. z o.o. (Kaufland DE etc.) 
+                IF EXISTS ( SELECT 1 FROM dbo.Turnusy t
+                            INNER JOIN dbo.Kunde k ON t.KundenID = k.[Kunden-ID]
+                            WHERE t.ID = @turnusId AND k.SubCompanyId = 2)
+                BEGIN
+                    -- 228 Umowa o świadczenie usług Zagranica INV
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM Dokument_pracownik dp 
+                        WHERE dp.dop_personalNr = @personalNr 
+                        AND dp.dop_delId = 228 
+                        AND dp.dop_deleted = 0
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 228, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- 229 Umowa o świadczenie usług marketingowych INV
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM Dokument_pracownik dp 
+                        WHERE dp.dop_personalNr = @personalNr 
+                        AND dp.dop_delId = 229 
+                        AND dp.dop_deleted = 0
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 229, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- 231 Oświadczenie zleceniobiorcy INV
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM Dokument_pracownik dp 
+                        WHERE dp.dop_personalNr = @personalNr 
+                        AND dp.dop_delId = 231 
+                        AND dp.dop_deleted = 0
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 231, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- 234 Informacja o przetwarzaniu danych osobowych INV
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM Dokument_pracownik dp 
+                        WHERE dp.dop_personalNr = @personalNr 
+                        AND dp.dop_delId = 234 
+                        AND dp.dop_deleted = 0
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 234, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- 235 Oświadczenie do A1 Invent Sp. z o.o. INV
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM Dokument_pracownik dp 
+                        WHERE dp.dop_personalNr = @personalNr 
+                        AND dp.dop_delId = 235 
+                        AND dp.dop_deleted = 0
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 235, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- 236 Oświadczenie do A1 Invent2GO Sp. z o.o. Sp. k. INV
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM Dokument_pracownik dp 
+                        WHERE dp.dop_personalNr = @personalNr 
+                        AND dp.dop_delId = 236 
+                        AND dp.dop_deleted = 0
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 236, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- Dokumenty generowane każdorazowo
+                    -- 230 Aneks nr 1 INV KL
+                    EXEC [CreateWorkerDocument] @personalNr, 230, @IndividualDateStartTurnus, @IndividualDateFinishTurnus, @modifiedBy, @turnusId, 6
+                    
+                    -- 232 Oświadczenie zleceniobiorcy do umowy - zakwaterowanie INV
+                    EXEC [CreateWorkerDocument] @personalNr, 232, @IndividualDateStartTurnus, @IndividualDateFinishTurnus, @modifiedBy, @turnusId, 6
+
+                    -- 233 Oświadczenie o okresie dyspozycyjności INV
+                    EXEC [CreateWorkerDocument] @personalNr, 233, @IndividualDateStartTurnus, @IndividualDateFinishTurnus, @modifiedBy, @turnusId, 6
+                    -- Koniec Dokumenty generowane każdorazowo
+                    
+                    -- 237 Regulamin do zagranicznych turnusów INV
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM Dokument_pracownik dp 
+                        WHERE dp.dop_personalNr = @personalNr 
+                        AND dp.dop_delId = 237
+                        AND dp.dop_deleted = 0
+                        AND @NewStartDateMainDocuments BETWEEN CAST(dop_waznyOd AS Date) AND CAST(dop_waznyDo AS Date)
+                        AND CAST(dop_waznyDo AS Date) = CAST(@NewEndYearDocuments AS Date)
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 237, @NewStartDateMainDocuments, @NewEndYearDocuments, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- 238 Informator kierowcy INV
+                    IF @kierowca = 1
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 238, @IndividualDateStartTurnus, @IndividualDateFinishTurnus, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- 239 deklaracja rezygnacji z PPK INV - 
+                    IF NOT EXISTS (
+                            SELECT 1
+                            FROM Dokument_pracownik dp
+                            join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
+                            WHERE dp.dop_delId = 239
+                                AND dp.dop_personalNr = @personalNr
+                                AND  pd.pra_createdDate < dp.dop_createdDate
+                                AND dp.dop_deleted = 0 AND dp.dop_companyId = 6 AND dp.dop_waznyDo is null
+                            )
+                            AND @employeeAge >= 18 AND @employeeAge <= 54
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr
+                            ,239
+                            ,NULL
+                            ,NULL
+                            ,@modifiedBy
+                            ,@turnusId
+                            ,6
+                    END
+
+                    -- 240 broszura informacyjna PPK INV
+                    IF NOT EXISTS (
+                            SELECT 1
+                            FROM Dokument_pracownik dp
+                            join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
+                            WHERE dp.dop_delId = 240
+                                AND dp.dop_personalNr = @personalNr
+                                AND  pd.pra_createdDate < dp.dop_createdDate
+                                AND dp.dop_deleted = 0
+                            )
+                            AND @employeeAge >= 18 AND @employeeAge <= 70
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr
+                            ,240
+                            ,NULL
+                            ,NULL
+                            ,@modifiedBy
+                            ,@turnusId
+                            ,6
+                    END
+
+                    -- 241 Informator ubezpieczonego - Karta do druku INV
+                    IF NOT EXISTS (
+                    SELECT 1
+                    FROM Dokument_pracownik dp
+                    WHERE dp.dop_personalNr = @personalNr
+                    AND dp.dop_delId = 241
+                    AND dp.dop_deleted = 0
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 241, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                    END
+
+                    -- 242 Prywatne Ubezpieczenie Medyczne - warunki INV
+                    IF NOT EXISTS (
+                        SELECT 1
+                        FROM Dokument_pracownik dp
+                        WHERE dp.dop_personalNr = @personalNr
+                        AND dp.dop_delId = 242
+                        AND dp.dop_deleted = 0
+                    )
+                    BEGIN
+                        EXEC [CreateWorkerDocument] @personalNr, 242, @NewStartDateMainDocuments, @endOfCurrentYear, @modifiedBy, @turnusId, 6
+                    END
+                -- END:  IF EXISTS (...SubCompanyId = 2)
+                END
+
+				--	--Dodatkowy kontrakt dla kaufland DE - KauflandContractDe
 				--IF NOT EXISTS (
 				--	SELECT 1
 				--	FROM Dokument_pracownik dp
 				--	join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-				--	WHERE dp.dop_delId = 147
+				--	WHERE dp.dop_delId = 161
 				--		AND dp.dop_personalNr = @personalNr
 				--		AND  pd.pra_createdDate < dp.dop_createdDate
 				--		AND ISNULL(dp.dop_deleted, 0) = 0
@@ -386,7 +414,7 @@ BEGIN
 				--	and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (217))
 				--BEGIN
 				--	EXEC [CreateWorkerDocument] @personalNr
-				--		,147
+				--		,161
 				--		,@NewStartDateMainDocuments
 				--		,@endOfCurrentYear
 				--		,@modifiedBy
@@ -394,12 +422,12 @@ BEGIN
 				--	    ,@companyId
 				--End
 
-														
+				---- AnnexKauflandDe - dodatkowy aneks dla Kaufland DE
 				--IF NOT EXISTS (
 				--	SELECT 1
 				--	FROM Dokument_pracownik dp
 				--	join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-				--	WHERE dp.dop_delId = 148
+				--	WHERE dp.dop_delId = 162
 				--		AND dp.dop_personalNr = @personalNr
 				--		AND dp.dop_trnId = @turnusId
 				--		AND ISNULL(dp.dop_deleted, 0) = 0
@@ -407,9 +435,9 @@ BEGIN
 				--	and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (217))
 				--BEGIN
 				--	EXEC [CreateWorkerDocument] @personalNr
-				--		,148
+				--		,162
 				--		,@IndividualDateStartTurnus
-				--		,@IndividualDateFinishTurnus
+				--		,@koniecTurnusu
 				--		,@modifiedBy
 				--		,@turnusId
 				--	    ,@companyId
@@ -573,42 +601,40 @@ BEGIN
 						,@turnusId
 					    ,@companyId
 				END
-
-						   
-				IF EXISTS (
-						SELECT 1
-						FROM Dokument_pracownik
-						WHERE dop_delId=8
-						AND dop_personalNr = @personalNr
-						AND dop_deleted = 0
-						AND CAST( dop_waznyOd AS Date ) = CAST( @NewStartDateMainDocuments AS Date )
-				)
-				--Harmonogram planowany
-				EXEC [CreateWorkerDocument] @personalNr
-					,134
-					,@NewStartDateMainDocuments
-					,@koniecTurnusu
-					,@modifiedBy
-					,@turnusId
-					,@companyId
-
+				
+				--Aneks zmiana treść do umowy o świadczenie usług inwentaryzacji
+				
+				--EXEC [CreateWorkerDocument] @personalNr
+				--		,213
+				--		,'2024-07-01'
+				--		,@endOfCurrentYear
+				--		,@modifiedBy
+				--		,@turnusId
+				--	    ,@companyId
 
 				--Aneks zmiana treść do umowy o świadczenie usług inwentaryzacji
-				IF GETDATE() > '2024-06-30'
-				EXEC [CreateWorkerDocument] @personalNr
-						,164
-						,'2024-07-01'
-						,@endOfCurrentYear
-						,@modifiedBy
-						,@turnusId
-					    ,@companyId    
+				--EXEC [CreateWorkerDocument] @personalNr
+				--	,138
+				--	,'2023-07-24'
+				--	,@koniecTurnusu
+				--	,@modifiedBy
+				--	,@turnusId
+				--	,@companyId
 
 					
 				--Regulamin do zagranicznych turnusów - aktualizacja
+
+				--EXEC [CreateWorkerDocument] @personalNr
+				--	,139
+				--	,@NewStartDateMainDocuments
+				--	,@endOfCurrentYear
+				--	,@modifiedBy
+				--	,@turnusId
+				--	,@companyId
 				IF NOT EXISTS (
 						SELECT 1
 						FROM Dokument_pracownik
-						WHERE dop_delId = 138
+						WHERE dop_delId = 139
 						  AND dop_personalNr = @personalNr
 						  AND dop_deleted = 0
 						  AND @NewStartDateMainDocuments BETWEEN CAST(dop_waznyOd AS Date) AND CAST(dop_waznyDo AS Date)
@@ -616,7 +642,7 @@ BEGIN
 				)
 				BEGIN
 					EXEC [CreateWorkerDocument] @personalNr
-						,138
+						,139
 						,@NewStartDateMainDocuments
 						,@NewEndYearDocuments
 						,@modifiedBy
@@ -628,8 +654,8 @@ BEGIN
 				UPDATE dbo.PracownikDane
 				SET dop_canShowPpkPopup = 1
 				WHERE dbo.PracownikDane.pra_personalNr = @personalNr
-			
-							   
+
+				-- Karta dla ubezpieczonego
 				EXEC [CreateWorkerDocument] @personalNr
 					,140
 					,@NewStartDateMainDocuments
@@ -637,8 +663,8 @@ BEGIN
 					,@modifiedBy
 					,@turnusId
 					,@companyId
-
-												  
+				
+				-- Prywatne Ubezpieczenie Medyczne – warunki
 				EXEC [CreateWorkerDocument] @personalNr
 					,141
 					,@NewStartDateMainDocuments
@@ -647,132 +673,119 @@ BEGIN
 					,@turnusId
 					,@companyId
 
-					--Umowa o świadczenie usług Zagranica FR - 158
+                --Umowa o świadczenie usług Zagranica FR - 198
 
                     IF NOT EXISTS (
-					SELECT 1
-					FROM Dokument_pracownik dp
-					join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-					WHERE dp.dop_delId = 158
-						AND dp.dop_personalNr = @personalNr
-						AND  pd.pra_createdDate < dp.dop_createdDate
-						AND ISNULL(dp.dop_deleted, 0) = 0
-					)
-					and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (311, 312))
+                    SELECT 1
+                    FROM Dokument_pracownik dp
+                    join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
+                    WHERE dp.dop_delId = 198
+                        AND dp.dop_personalNr = @personalNr
+                        AND  pd.pra_createdDate < dp.dop_createdDate
+                        AND ISNULL(dp.dop_deleted, 0) = 0
+                    )
+                    and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (352, 353))
 				BEGIN
-				DECLARE @DynamicStartDate DATE;
-    
-					-- Pobranie daty dop_dataPodpisania dla z umowy zagranica
-					SELECT TOP 1 @DynamicStartDate = dop_dataPodpisania
-					FROM [ICOM_Test].[dbo].[Dokument_pracownik]
-					WHERE dop_personalNr = @personalNr
-						AND dop_deleted = 0
-						AND dop_delId = 8
-						AND dop_waznyDo > GETDATE()
-						AND dop_waznyOd < @IndividualDateFinishTurnus
-					ORDER BY dop_waznyOd DESC;
-
 					EXEC [CreateWorkerDocument] @personalNr
-						,158
-						,@DynamicStartDate
+						,198
+						,@NewStartDateMainDocuments
 						,@endOfCurrentYear
 						,@modifiedBy
 						,@turnusId
 					    ,@companyId
                 END
-                --Umowa o świadczenie usług Zagranica FR - 159
+                --Aneks Oddelegowania Inwentaryzacje FR - 200
 
                     IF NOT EXISTS (
 					SELECT 1
 					FROM Dokument_pracownik dp
 					join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-					WHERE dp.dop_delId = 159
+					WHERE dp.dop_delId = 200
 						AND dp.dop_personalNr = @personalNr
 						AND  pd.pra_createdDate < dp.dop_createdDate
 						AND ISNULL(dp.dop_deleted, 0) = 0
 						AND dp.dop_trnId = @turnusId
 					)
-					and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (311))
+					and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (352))
 				BEGIN
 					EXEC [CreateWorkerDocument] @personalNr
-						,159
+						,200
 						,@IndividualDateStartTurnus
 						,@IndividualDateFinishTurnus
 						,@modifiedBy
 						,@turnusId
 					    ,@companyId
                 END
-                --Umowa o świadczenie usług Zagranica FR - 160
+                --Aneks Oddelegowania Towarowanie FR - 201
 
                     IF NOT EXISTS (
 					SELECT 1
 					FROM Dokument_pracownik dp
 					join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-					WHERE dp.dop_delId = 160
+					WHERE dp.dop_delId = 201
 						AND dp.dop_personalNr = @personalNr
 						AND  pd.pra_createdDate < dp.dop_createdDate
 						AND ISNULL(dp.dop_deleted, 0) = 0
 						AND dp.dop_trnId = @turnusId
 					)
-					and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (312))
+					and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (353))
 				BEGIN
 					EXEC [CreateWorkerDocument] @personalNr
-						,160
+						,201
 						,@IndividualDateStartTurnus
 						,@IndividualDateFinishTurnus
 						,@modifiedBy
 						,@turnusId
 					    ,@companyId
                 END
-                 --Umowa o świadczenie usług Zagranica FR - 161
+                 --Załącznik do aneksu TEDI FR - 202
 
                     IF NOT EXISTS (
 					SELECT 1
 					FROM Dokument_pracownik dp
 					join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-					WHERE dp.dop_delId = 161
+					WHERE dp.dop_delId = 202
 						AND dp.dop_personalNr = @personalNr
 						AND  pd.pra_createdDate < dp.dop_createdDate
 						AND ISNULL(dp.dop_deleted, 0) = 0
 						AND dp.dop_trnId = @turnusId
 					)
-					and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (311, 312))
+					and exists (select 1 from dbo.Turnusy t where t.ID = @turnusId and t.KundenID in (352, 353))
 				BEGIN
 					EXEC [CreateWorkerDocument] @personalNr
-						,161
+						,202
 						,@IndividualDateStartTurnus
 						,@IndividualDateFinishTurnus
 						,@modifiedBy
 						,@turnusId
 					    ,@companyId    
-                    END
-				--Oświadczenie dotyczące polityki firmy
+                END
+                --Oświadczenie dotyczące polityki firmy
 
                 IF NOT EXISTS (
 					SELECT 1
 					FROM Dokument_pracownik dp
 					join dbo.PracownikDane pd on pd.pra_personalNr = dp.dop_personalNr
-					WHERE dp.dop_delId = 162
+					WHERE dp.dop_delId = 212
 						AND dp.dop_personalNr = @personalNr
 						AND  pd.pra_createdDate < dp.dop_createdDate
 						AND ISNULL(dp.dop_deleted, 0) = 0
 					)
 				BEGIN
 					EXEC [CreateWorkerDocument] @personalNr
-						,162
+						,212
 						,@today
 						,@endOfCurrentYear
 						,@modifiedBy
 						,@turnusId
 					    ,@companyId    
                 END
-
-				--Umowa o świadczenie usług Zagranica IT
+					--Umowa o świadczenie usług Zagranica IT
 				IF NOT EXISTS (
 					SELECT 1
 					FROM Dokument_pracownik dp
 					JOIN dbo.PracownikDane pd ON pd.pra_personalNr = dp.dop_personalNr
-					WHERE dp.dop_delId = 165
+					WHERE dp.dop_delId = 221
 					  AND dp.dop_personalNr = @personalNr
 					  AND pd.pra_createdDate < dp.dop_createdDate
 					  AND ISNULL(dp.dop_deleted, 0) = 0
@@ -790,20 +803,20 @@ BEGIN
 				)
 				BEGIN
 					EXEC [CreateWorkerDocument] @personalNr
-						,165
+						,221
 						,@NewStartDateMainDocuments
 						,@NewEndYearDocuments
 						,@modifiedBy
 						,@turnusId
 					    ,@companyId
-				End
+				END
 
 				-- Aneks nr 1 do umowy IT
 				IF NOT EXISTS (
 					SELECT 1
 					FROM Dokument_pracownik dp
 					JOIN dbo.PracownikDane pd ON pd.pra_personalNr = dp.dop_personalNr
-					WHERE dp.dop_delId = 166
+					WHERE dp.dop_delId = 222
 					  AND dp.dop_personalNr = @personalNr
 					  AND pd.pra_createdDate < dp.dop_createdDate
 					  AND ISNULL(dp.dop_deleted, 0) = 0
@@ -821,20 +834,20 @@ BEGIN
 				)
 				BEGIN
 					EXEC [CreateWorkerDocument] @personalNr
-						,166
+						,222
 						,@IndividualDateStartTurnus
 						,@koniecTurnusu
 						,@modifiedBy
 						,@turnusId
 					    ,@companyId
-				End
+				END
 
 				-- Oświadczenia Zleceniobiorcy IT 
 				IF NOT EXISTS (
 					SELECT 1
 					FROM Dokument_pracownik dp
 					JOIN dbo.PracownikDane pd ON pd.pra_personalNr = dp.dop_personalNr
-					WHERE dp.dop_delId = 167
+					WHERE dp.dop_delId = 223
 					  AND dp.dop_personalNr = @personalNr
 					  AND pd.pra_createdDate < dp.dop_createdDate
 					  AND ISNULL(dp.dop_deleted, 0) = 0
@@ -852,13 +865,14 @@ BEGIN
 				)
 				BEGIN
 					EXEC [CreateWorkerDocument] @personalNr
-						,167
+						,223
 						,@IndividualDateStartTurnus
 						,@NewEndYearDocuments
 						,@modifiedBy
 						,@turnusId
 					    ,@companyId
-				End
+				END
+            -- END: WHILE @counter < @length
 			END
 					--    FETCH NEXT FROM MY_CURSOR 
 					--END
