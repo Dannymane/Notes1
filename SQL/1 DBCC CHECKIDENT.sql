@@ -1,0 +1,1 @@
+DBCC CHECKIDENT('[DB].[Table]', RESEED, 99); -- the next inserted row will have the value 100
