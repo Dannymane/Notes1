@@ -68,6 +68,49 @@ public class Solution {
         }
         return -1;
     }
+
+    // ------------ Construct Binary Tree from Preorder and Inorder Traversal ------------
+    // simple O(n^2)
+    public TreeNode BuildTree(int[] preorder, int[] inorder) 
+    {
+        if(preorder.Length == 0 || inorder.Length == 0)
+            return null;
+
+        int inorderIndex = Array.IndexOf(inorder, preorder[0]);
+
+        return new TreeNode(preorder[0],
+                            BuildTree(preorder[1..(inorderIndex+1)], inorder[0..inorderIndex]),
+                            BuildTree(preorder[(inorderIndex+1)..], inorder[(inorderIndex+1)..]));
+    }
+    // --- faster O(n) ---
+    public class Solution {
+        private Dictionary<int, int> _inorderIndexes = new Dictionary<int, int>();
+        private int[] _preorder;
+
+        public TreeNode BuildTree(int[] preorder, int[] inorder) 
+        {
+            if(preorder.Length == 0 || inorder.Length == 0)
+                return null;
+
+            _preorder = preorder;
+            for(int i = 0; i < inorder.Length; i++)
+                _inorderIndexes[inorder[i]] = i;
+
+            return BuildSubTree(0, preorder.Length-1, 0, preorder.Length-1);
+        }
+
+        private TreeNode BuildSubTree(int pLeft, int pRight, int iLeft, int iRight)
+        {
+            if(pLeft > pRight || iLeft > iRight)
+                return null;
+
+            var size = _inorderIndexes[_preorder[pLeft]] - iLeft;
+
+            return new TreeNode(_preorder[pLeft],
+                                BuildSubTree(pLeft+1, pLeft + size, iLeft, iLeft + size),
+                                BuildSubTree(pLeft+size+1, pRight, iLeft+size+1, iRight));
+        }
+    }
     // ------------ Depth First Search DFS ------------
     public IList<int> InorderTraversal(TreeNode root) {
         if(root == null)
@@ -197,4 +240,95 @@ public class Solution {
             Evaluate(node.right, node.val, max)
         );   
     }
+
+    //------------ Recover Binary Search Tree ------------
+
+    public class Solution {
+        private TreeNode _first;
+        private TreeNode _second;
+        private TreeNode _previous;
+        
+        public void RecoverTree(TreeNode root) {
+            findBadNodes(root);
+
+            if(_first != null)
+            {
+                int temp = _first.val;
+                _first.val = _second.val;
+                _second.val = temp;
+            }
+        }
+
+        private void findBadNodes(TreeNode node)
+        {
+            if(node == null)
+                return;
+            findBadNodes(node.left);
+
+            List<int> ints = new List<int>(){1,2,3,4,5,6,7,8,9,10}; 
+            bool b = ints.Count > 0;
+
+
+            if(_previous?.val >= node.val)
+            {
+                if(_first == null)
+                    _first = _previous;
+                _second = node;
+            }
+            _previous = node;
+
+            findBadNodes(node.right);
+        }
+    }
+
+    //------------ 173. Binary Search Tree Iterator ------------
+    // 1 ms (100%) Next and HasNext: O(1); 63 MB (5.7%) memory: O(n)
+    public class BSTIterator {
+        private List<int> _inorder = new List<int>();
+        private int _currentIdx = 0;
+        public BSTIterator(TreeNode root) {
+            FillInorderList(root);
+        }
+        private void FillInorderList(TreeNode node)
+        {
+            if(node == null)
+                return;
+
+            FillInorderList(node.left);
+            _inorder.Add(node.val);
+            FillInorderList(node.right);
+        }
+        public int Next() {
+            return _inorder[_currentIdx++];
+        }
+        public bool HasNext() {
+            return _currentIdx + 1 <= _inorder.Count;
+        }
+    }
+    //version with Queue is slower because it additionally removes elements
+    // 2 ms (23.36%) 63 MB (5.7%) 
+    public class BSTIterator {
+    private Queue<int> _queue = new Queue<int>();
+    public BSTIterator(TreeNode root) {
+        FillInorderList(root);
+    }
+    private void FillInorderList(TreeNode node)
+    {
+        if(node == null)
+            return;
+
+        FillInorderList(node.left);
+        _queue.Enqueue(node.val);
+        FillInorderList(node.right);
+    }
+    public int Next() {
+        return _queue.Dequeue();
+    }
+    public bool HasNext() {
+        return _queue.Count > 0;
+    }
+}
+
+
+
 }

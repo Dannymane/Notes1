@@ -2,3 +2,27 @@
   inputs:
     command: 'restore'
     projects: 'SR1/SR1.sln'
+
+trigger:
+- Master
+
+pool:
+  name: 'default'
+
+steps:
+- task: 'DotNetCoreCLI@2'
+  inputs:
+    command: 'test'
+    displayName: 'dotnet test'
+
+- task: 'DotNetCoreCLI@2'
+  inputs:
+    commang: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'
