@@ -74,7 +74,7 @@ public class Collections{
 
       string result;
       string result2;
-      DateTime date = DateTime.Now;
+
       Dictionary<string, DateTime> dDateTime = new Dictionary<string, DateTime>();
       
       //var value = d1["key"]; //KeyNotFoundException
@@ -85,8 +85,8 @@ public class Collections{
       if(d1.TryGetValue("qwerty", out result)) //false
          Console.WriteLine(result); 
 
-      d1.TryGetValue("qwerty", out result2);//after that result2 is null!!!
-      dDateTime.TryGetValue("qwerty", out date);//after that `date` will be 01/01/0001 00:00:00
+      d1.TryGetValue("qwerty", out result2);//after that result2 is null!!! (default value)
+      dDateTime.TryGetValue("qwerty", out var date);//after that `date` will be initialized and = 01/01/0001 00:00:00 (default value)
 
       foreach(var el in d1)
       {
