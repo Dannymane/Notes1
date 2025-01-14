@@ -12,7 +12,6 @@ public class Numbers{
 		int int1 = 7/4; //1
 		double dbl1 = 9.9;
 		int1 = (int)dbl1; // 9
-	int.MinValue
 		//casting order:
 		//1. casting
 		//2 math operation

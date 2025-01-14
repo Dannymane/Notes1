@@ -52,7 +52,7 @@ public class Collections{
       var b = a5[..2];  // 1, 2
       var c = a5[0..2]; // 1, 2
       var d = a5[2..];  // 3, 4, 5, 6
-      Console.WriteLine(Array.IndexOf())); //2
+      
       //-------------------- Dictionary -----------------
       //.ToDictionary( gr => gr.Key, gr => gr.Value);
       
