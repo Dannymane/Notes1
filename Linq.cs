@@ -129,8 +129,8 @@ public class Linq
       new Student() { StudentID = 3, StudentName = "Bill",  age = 25 } ,
       new Student() { StudentID = 4, StudentName = "Ram" , age = 20 } ,
       new Student() { StudentID = 5, StudentName = "Ron" , age = 31 } ,
-      new Student() { StudentID = 6, StudentName = "Chris",  age = 17 } ,
-      new Student() { StudentID = 7, StudentName = "Rob",age = 19  } ,
+      new Student() { StudentID = 6, StudentName = "Chris", age = 17 } ,
+      new Student() { StudentID = 7, StudentName = "Rob", age = 19  } ,
    };
         // var sts = studentArray.Select(st => new  {Id = st.StudentID, StudentName = st.StudentName});
         // foreach(var s in sts)
@@ -144,25 +144,14 @@ public class Linq
                               select s;
 
 
-
-        // Use LINQ to find first student whose name is Bill 
-        Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault() ?? new Student { StudentID = 1, StudentName = "Bill", age = 18 };
-        System.Console.WriteLine(bill.StudentName); //Bill
-
-        // Use LINQ to find students whose StudentID is 5
-        List<Student> studentsWithID5 = studentArray.Where(s => s.StudentID == 5).ToList();
-        foreach (var s in studentsWithID5)
-        {
-            System.Console.WriteLine(s.StudentID);
-        }
         // string collection
         IList<string> stringList = new List<string>() {
-      "C# Tutorials",
-      "VB.NET Tutorials",
-      "Learn C++",
-      "MVC Tutorials" ,
-      "Java"
-   };
+            "C# Tutorials",
+            "VB.NET Tutorials",
+            "Learn C++",
+            "MVC Tutorials" ,
+            "Java"
+        };
         // LINQ Query Syntax
         var result = from name in stringList where name.Contains("Tutorials") select name;
         // LINQ Method Syntax (.Where is calling extension method)
@@ -250,7 +239,6 @@ public class Linq
 
         // foreach(var n in groupJoin)
         // System.Console.WriteLine("Number " + n.s.ToString() +" appears " + n.i.Count().ToString() + " times");
-
         //another way - just use group by
         var group = arr2.GroupBy(x => x);
         foreach (var value in group)
@@ -262,7 +250,7 @@ public class Linq
         foreach (var ch in group2)
             System.Console.WriteLine($"Character {ch.Key}: {ch.Count()} times");
 
-        //7 Вisplay numbers, multiplication of numbers with frequency and the frequency of a number !!!in an array!!!.
+        //7 Display numbers, multiplication of numbers with frequency and the frequency of a number !!!in an array!!!.
         System.Console.WriteLine("\n//7");
 
         int[] numbers = { 5, 1, 9, 2, 3, 7, 4, 5, 6, 8, 7, 6, 3, 4, 5, 2 };
@@ -284,7 +272,7 @@ public class Linq
 
         // var resString = cities.Where(c => c[0].ToString() == "A" && c[c.Length-1].ToString() == "M").FirstOrDefault();
         // var resString = cities.Where(c => c.StartsWith("A") && c.EndsWith("M")).FirstOrDefault();
-        var resString = cities.FirstOrDefault(str => str.StartsWith("A") && str.EndsWith("M")); ;
+        var resString = cities.Where(str => str.StartsWith("A") && str.EndsWith("M")).FirstOrDefault(); ;
         System.Console.WriteLine(resString);
 
 
@@ -351,7 +339,7 @@ public class Linq
         //15 Count file extensions and group it using LINQ
         System.Console.WriteLine("\n//15");
 
-        string[] arr15 = { "aaa.frx", "bbb.TXT", "xyz.dbf", "abc.pdf", "aaaa.PDF", "xyz.frt", "abc.xml", "ccc.txt", "zzz.txt" };
+        string[] arr15 = { "aaa.frx", "bbb.TXT", "xyz.dbf", "abc.pdf", "aaaa.PDF", "xyz.frt", "abc.xml", "ccc.txt", "z.zz.txt" };
 
 
 
@@ -359,17 +347,17 @@ public class Linq
         foreach (var ext in res15)
             System.Console.WriteLine($"{ext.Count()} File(s) with .{ext.Key} Extension");
 
-        // Remove string at index 5, "m" and all "o"
+        // Remove string at index 5, one "m" and all "o"
         List<string> listOfString = new List<string>
-   {
-      "m",
-      "m",
-      "n",
-      "o",
-      "o",
-      "p",
-      "q"
-   };
+        {
+            "m",
+            "m",
+            "n",
+            "o",
+            "o",
+            "p",
+            "q"
+        };
 
 
         listOfString.RemoveAt(5); // p
@@ -379,13 +367,13 @@ public class Linq
         listOfString.ForEach(ch => Console.WriteLine(ch)); // m n q
 
         listOfString = new List<string>
-   {
-      "m",
-      "n",
-      "o",
-      "p",
-      "q"
-   };
+        {
+            "m",
+            "n",
+            "o",
+            "p",
+            "q"
+        };
         System.Console.WriteLine();
         listOfString.RemoveRange(1, 2);
         listOfString.ForEach(ch => System.Console.WriteLine(ch)); // m p q
@@ -411,11 +399,11 @@ public class Linq
 
         //Flattening nested List
         List<List<string>> listOfLists = new List<List<string>>
-      {
-            new List<string> { "apple", "banana", "cherry" },
-            new List<string> { "dog", "cat", "elephant" },
-            new List<string> { "red", "green", "blue" }
-      };
+        {
+                new List<string> { "apple", "banana", "cherry" },
+                new List<string> { "dog", "cat", "elephant" },
+                new List<string> { "red", "green", "blue" }
+        };
 
 
 
@@ -456,22 +444,22 @@ public class Linq
         //25 Generate an Inner Join between two data sets.
         System.Console.WriteLine("\n//25\n");
         List<Item_mast> itemlist = new List<Item_mast>{
-      new Item_mast { ItemId = 1, ItemDes = "Biscuit" },
-      new Item_mast { ItemId = 2, ItemDes = "Chocolate" },
-      new Item_mast { ItemId = 3, ItemDes = "Butter" },
-      new Item_mast { ItemId = 4, ItemDes = "Brade" },
-      new Item_mast { ItemId = 5, ItemDes = "Honey" }
-   };
+            new Item_mast { ItemId = 1, ItemDes = "Biscuit" },
+            new Item_mast { ItemId = 2, ItemDes = "Chocolate" },
+            new Item_mast { ItemId = 3, ItemDes = "Butter" },
+            new Item_mast { ItemId = 4, ItemDes = "Brade" },
+            new Item_mast { ItemId = 5, ItemDes = "Honey" }
+        };
 
         List<Purchase> purchlist = new List<Purchase>{
-      new Purchase { InvNo=100, ItemId = 3,  PurQty = 800 },
-      new Purchase { InvNo=101, ItemId = 2,  PurQty = 650 },
-      new Purchase { InvNo=102, ItemId = 3,  PurQty = 900 },
-      new Purchase { InvNo=103, ItemId = 4,  PurQty = 700 },
-      new Purchase { InvNo=104, ItemId = 3,  PurQty = 900 },
-      new Purchase { InvNo=105, ItemId = 4,  PurQty = 650 },
-      new Purchase { InvNo=106, ItemId = 1,  PurQty = 458 }
-   };
+            new Purchase { InvNo=100, ItemId = 3,  PurQty = 800 },
+            new Purchase { InvNo=101, ItemId = 2,  PurQty = 650 },
+            new Purchase { InvNo=102, ItemId = 3,  PurQty = 900 },
+            new Purchase { InvNo=103, ItemId = 4,  PurQty = 700 },
+            new Purchase { InvNo=104, ItemId = 3,  PurQty = 900 },
+            new Purchase { InvNo=105, ItemId = 4,  PurQty = 650 },
+            new Purchase { InvNo=106, ItemId = 1,  PurQty = 458 }
+        };
 
 
         var join25 = itemlist.Join(purchlist,
@@ -511,16 +499,20 @@ public class Linq
 
 
         var leftJoin2 = itemlist26.GroupJoin(purchlist26,
-           i => i.ItemId,
-           p => p.ItemId,
-           (i, purchases) => new { Item = i, Purchases = purchases })
-           .SelectMany(x => x.Purchases.DefaultIfEmpty(new Purchase()),
-           (x, p) => new
-           {
-               Id = x.Item.ItemId,
-               Name = x.Item.ItemDes,
-               Quantity = p.PurQty
-           }).ToList();
+            i => i.ItemId,
+            p => p.ItemId,
+            (i, purchases) => new 
+            { 
+                Item = i,
+                Purchases = purchases 
+            })
+            .SelectMany(x => x.Purchases.DefaultIfEmpty(new Purchase()),
+            (x, p) => new
+            {
+                Id = x.Item.ItemId,
+                Name = x.Item.ItemDes,
+                Quantity = p.PurQty
+            }).ToList();
 
 
         leftJoin2.ForEach(r => System.Console.WriteLine(r));
@@ -548,23 +540,23 @@ public class Linq
         System.Console.WriteLine("\n//27\n");
 
         List<Item_mast> Items = new List<Item_mast>{
-      new Item_mast { ItemId = 1, ItemDes = "Biscuit  " },
-      new Item_mast { ItemId = 2, ItemDes = "Chocolate" },
-      new Item_mast { ItemId = 3, ItemDes = "Butter   " },
-      new Item_mast { ItemId = 4, ItemDes = "Brade    " },
-      new Item_mast { ItemId = 5, ItemDes = "Honey    " }
-   };
+            new Item_mast { ItemId = 1, ItemDes = "Biscuit  " },
+            new Item_mast { ItemId = 2, ItemDes = "Chocolate" },
+            new Item_mast { ItemId = 3, ItemDes = "Butter   " },
+            new Item_mast { ItemId = 4, ItemDes = "Brade    " },
+            new Item_mast { ItemId = 5, ItemDes = "Honey    " }
+        };
 
         List<Purchase> Purchases = new List<Purchase>{
-      new Purchase { InvNo=100, ItemId = 3,  PurQty = 800 },
-      new Purchase { InvNo=101, ItemId = 5,  PurQty = 650 },
-      new Purchase { InvNo=102, ItemId = 3,  PurQty = 900 },
-      new Purchase { InvNo=103, ItemId = 4,  PurQty = 700 },
-      new Purchase { InvNo=104, ItemId = 3,  PurQty = 900 },
-      new Purchase { InvNo=105, ItemId = 4,  PurQty = 650 },
-      new Purchase { InvNo=106, ItemId = 1,  PurQty = 458 },
-      new Purchase { InvNo=107, ItemId = 6,  PurQty = 458 }
-   };
+            new Purchase { InvNo=100, ItemId = 3,  PurQty = 800 },
+            new Purchase { InvNo=101, ItemId = 5,  PurQty = 650 },
+            new Purchase { InvNo=102, ItemId = 3,  PurQty = 900 },
+            new Purchase { InvNo=103, ItemId = 4,  PurQty = 700 },
+            new Purchase { InvNo=104, ItemId = 3,  PurQty = 900 },
+            new Purchase { InvNo=105, ItemId = 4,  PurQty = 650 },
+            new Purchase { InvNo=106, ItemId = 1,  PurQty = 458 },
+            new Purchase { InvNo=107, ItemId = 6,  PurQty = 458 }
+        };
 
         //Only purchases that has relative Item_mast in Items 
         var res27 = Purchases.Join(Items,
@@ -616,16 +608,17 @@ public class Linq
 
         string[] cities29 =
         {
-         "ROME","LONDON","NAIROBI",
-         "CALIFORNIA", "ZURICH","NEW DELHI",
-         "AMSTERDAM", "ABU DHABI", "PARIS",
-         "NEW YORK"
-   };
+            "ROME","LONDON","NAIROBI",
+            "CALIFORNIA", "ZURICH","NEW DELHI",
+            "AMSTERDAM", "ABU DHABI", "PARIS",
+            "NEW YORK"
+        };
 
 
         var res29 = Enumerable.Range(0, cities29.Length)
         .GroupBy(i => i / 3, i => cities29[i])
-        .Select(g => g.ToList()).ToList();
+        .Select(g => g.ToList())
+        .ToList();
 
         var l29 = new List<List<string>>();
         for (int i = 0; i < cities29.Length; i++)
@@ -692,8 +685,8 @@ public class Linq
 
 
         Console.WriteLine(TimeSpan.FromSeconds(duration.Split(",") 
-                                  .Select(str => TimeSpan.Parse("00:0" + str).TotalSeconds)
-                                  .Sum())
+                                    .Select(str => TimeSpan.Parse("00:0" + str).TotalSeconds)
+                                    .Sum())
         ); //00:57:01
 
         Console.WriteLine(duration.Split(",") 

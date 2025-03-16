@@ -82,7 +82,7 @@ public class Collections{
          Console.WriteLine(result); //Tokyo
 
 
-      if(d1.TryGetValue("qwerty", out result)) //false
+      if(d1.TryGetValue("qwerty", out result)) //false, after that result is null (not Tokyo)
          Console.WriteLine(result); 
 
       d1.TryGetValue("qwerty", out result2);//after that result2 is null!!! (default value)
