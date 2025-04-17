@@ -164,6 +164,12 @@ namespace Equals
             an1 = new { Value = 20, Name = "Dan" };         //an1 do not point to John anymore
             Console.WriteLine(an2.Value);                   //10
 
+            object a1 = new object();
+            object a2 = new object();
+            object a3 = new object();
+
+            a3 = a2 = a1; //assigns a1 to a2 and a2 to a3, all point to the same object a1
+
 
         }
     }
