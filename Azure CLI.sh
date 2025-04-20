@@ -13,7 +13,6 @@ az webapp list \
     --query "[].{nameForVariableInOutput:name, Location:location}" \
     --output tsv #instead of --output may be just -o
 
-
 #Get the list of all web apps in a specific resource group - add
     --resource-group <group_name> \
 
