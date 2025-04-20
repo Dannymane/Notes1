@@ -43,6 +43,6 @@ public class Async{
 		await Console.Out.WriteLineAsync("Starting Kafka consumers..."); //same as sync Console.WriteLine
 		// await Task.WhenAll(tasks); //block the main thread, because firstly it iterates over all tasks,
 									// creates Task object and only then calls await Task.WhenAll(tasks);
-		await Task.Run( () => Task.WhenAll(tasks)); //passes to another thread before creating Task object
+		await Task.Run( () => Task.WhenAll(tasks)); //passes to another thread before creating Task object 
 	}
 }
