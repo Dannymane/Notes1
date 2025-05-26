@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Notes1
 {
-    public class Note3_OrderBy
+    public class Note3_Other
     {
         public static void Mainw(string[] args)
         {
-            var n1 = new List<decimal?> { 10, -9, null, 1, 0, null };
-            Console.WriteLine(String.Join(' ', n1.OrderBy(n => Math.Abs(n ?? 0))));
+
+
         }
     }
 }
