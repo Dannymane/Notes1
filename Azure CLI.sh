@@ -6,7 +6,7 @@ echo $RANDOM
 az group list \
     --query "[].{nameForVariableInOutput:name, Location:location}" \
     --output table 
-# "[].{}" is a JMESPath query that selects all elements in the array [] and creates a new object {} with the specified properties.
+# "[].{}" is Na JMESPath query that selects all elements in the array [] and creates a new object {} with the specified properties.
 
 #get the list of all web apps
 az webapp list \
