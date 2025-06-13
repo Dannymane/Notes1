@@ -2,11 +2,21 @@
 echo $RANDOM
 #returns a random number between 0 and 32767
 
+#login in Azure CLI
+az login --use-device-code #--use-device-code redirects to browser and enables required multifactor authorization 
+
 #get the list of all resource groups
-az group list \
-    --query "[].{nameForVariableInOutput:name, Location:location}" \
+az group list 
+    --query "[].{nameForVariableInOutput:name, Location:location}" 
     --output table 
 # "[].{}" is Na JMESPath query that selects all elements in the array [] and creates a new object {} with the specified properties.
+# just az group list
+
+#get certail resource group info
+az group show --name <group_name>
+
+#get all group resources
+az resource list --resource-group <group_name>
 
 #get the list of all web apps
 az webapp list \
@@ -27,11 +37,18 @@ appName=az204app$RANDOM
 #Display the value of the variable
 echo $resourceGroup
 
-#Deploy the web app
+#Create and Deploy the web app 
 az webapp up 
     -g $resourceGroup #g is short for --resource-group
-    -n $appName --html  #n is short for --name
+    -n $appName #use appName that you defined when created App Service Plan
+    --html  #n is short for --name
 
+#Deploy new build to already existing app
+az webapp deploy 
+--name dy-school-register
+--resource-group main-rg 
+--src-path releaseVersion.zip #PowerShell must be at directory with .zip or provide full path
+--type zip
 
 #the outbound IP addresses currently used by app (equal to all used outbound IP used by plan)
 az webapp show \
