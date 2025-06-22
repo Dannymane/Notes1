@@ -40,7 +40,6 @@ public class Collections{
       integers.Where(i => i > 25).ToList().ForEach(i => System.Console.WriteLine(i));//30 40
 
       int[] a1 = { 1, 2, 3, 4, 5 };
-      int[] a2 = new int[] { 1, 2, 3, 4, 5 };
       int[] a3 = new int[5]; // Creates an array with 5 elements, all initialized to 0
       int[] a4 = new int[] { 1, 2, 3, 4, 5 }; // Creates an array with 5 elements, initialized to 1, 2, 3, 4, 5
       bool[] flags = new bool[3]; // { false, false, false }
