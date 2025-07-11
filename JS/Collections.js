@@ -6,6 +6,8 @@ cars2[0]= "Saab";
 cars2[1]= "Volvo";
 cars2[2]= "BMW";
 
+cars2.push("Toyota");//and a lot of other methods
+
 const cars3 = new Array("Saab", "Volvo", "BMW");
 
 //Object 
@@ -33,3 +35,10 @@ console.log(text); //key = 123[object Object] = value
 //Sets
 const set = new Set([1, 2, 3, 3]); //.add, .has, .delete
 console.log(set); // 1, 2, 3
+
+//loops
+//c# foreach equivalent
+for(let e of set) {}
+//same as for(let i = 0;i < array.length;i++)
+for(let i in array) {}
+
