@@ -42,3 +42,15 @@ for(let e of set) {}
 //same as for(let i = 0;i < array.length;i++)
 for(let i in array) {}
 
+const elem = document.getElementById("para");
+elem.style.color = newColor;
+
+
+
+
+let loginForm = document.getElementById("login-form");
+let loginButton = document.getElementById("login-button");
+
+loginForm.addEventListener("submit", e => {
+	loginButton.disabled = true;
+});
