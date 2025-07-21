@@ -44,3 +44,12 @@ console.log(sum(1, 2, 3, 4)); // 10
 setTimeout(() => console.log("Delayed"), 1000); //doesn't block the program, just execute this later
 
 
+//Closure:
+function makeCounter() {
+    let count = 0;
+    return () => ++count;
+}
+
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
