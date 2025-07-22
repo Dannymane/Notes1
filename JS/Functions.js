@@ -45,11 +45,57 @@ setTimeout(() => console.log("Delayed"), 1000); //doesn't block the program, jus
 
 
 //Closure:
-function makeCounter() {
+function getCounter() {
     let count = 0;
     return () => ++count;
 }
 
-const counter = makeCounter();
+const counter = getCounter();
 console.log(counter()); // 1
 console.log(counter()); // 2
+
+//another closure
+function getFunction2(message) {
+    let invokeCount = 0;
+    
+    return function(message) {
+        invokeCount++;
+        console.log('Function invoked: ' + invokeCount + ' times. Message: ' + message);
+    };
+}
+
+console.log(this); // In browser: Window object
+
+//inside object
+function regularFunction() {
+    console.log(this.name);
+}
+
+let obj = { name:'Alice', func:regularFunction };
+obj.func(); //Alice
+
+
+//Lost content
+const person = {
+    name: "Bob",
+    greet() {
+        console.log(this.name);
+    }
+};
+
+const sayHi = person.greet;
+sayHi(); // ❌ undefined (or global object)
+
+
+// call/apply, bind
+function show() {
+    console.log(this);
+}
+
+const obj2 = { name: "Dan" };
+show.call(obj2);   // sets `this` to obj
+show.apply(obj2);  // same as call
+show(); // { name: 'Dan' }
+
+const bound = show.bind(obj2);
+bound(); // also sets `this` to obj
