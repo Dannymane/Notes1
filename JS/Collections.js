@@ -7,6 +7,7 @@ cars2[1]= "Volvo";
 cars2[2]= "BMW";
 
 cars2.push("Toyota");//and a lot of other methods
+cars2.reverse() // assigns a reversed cars2 to cars2 (in c# you have to assign it manually).
 
 const cars3 = new Array("Saab", "Volvo", "BMW");
 
