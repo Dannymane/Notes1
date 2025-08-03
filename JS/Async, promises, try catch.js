@@ -10,7 +10,7 @@ const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("Done!"); 
     }, 1000);
-});
+}); //promise fetch/run timeout here, not below with .then.catch...
 
 promise
     .then(result => console.log(result)) // if resolved
@@ -63,103 +63,8 @@ console.log("End");
 // setTimeout Promise.then
 // setTimeout
 
-//try catch 
-try {
-    throw new Error("Error message");
-  } catch (err) {
-    console.error("Error caught:", err.message);
-  } finally {
-    console.log("Try-catch run");
-  }
-//try catch works only with synchronous code, or with await (also sync) (same as in C#)
-async function fetchData() {
-    try {
-        const response = await fetch("https://api.example.com/data");
-        const data = await response.json();
-        console.log(data);
-    } catch (e) {
-        console.error("Fetch failed", e);
-    }
-}
-
-async function fetchData() {
-    try {
-        const response = fetch("https://api.example.com/data"); //won't catch async error
-    } catch (e) {
-        console.error("Fetch failed", e);
-    }
-}
-
-
-// wrong using try-catch:
-const resolvePromise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("ok"), 1000 );
-});
-
-const rejectPromise = new Promise((resolve, reject) => {
-    setTimeout(() => reject("bad request"), 1000);
-});
-
-try{
-    resolvePromise.then((result) => console.log(result))
-        .catch((error) => { throw new Error(error); });
-
-    rejectPromise.then((result) => console.log(result))
-        .catch((error) => {throw new Error(error)});
-} catch (e) {
-    console.log(`Registered error: ${e.message}`);
-} finally {
-    console.log("End of try catch");
-}
-//the output:
-// End of try catch
-// ok
-// ERROR! ... (thrown error outside of try-catch)
-
-// proper using try-catch:
-const resolvePromise1 = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("ok"), 1000 );
-});
-
-const rejectPromise1 = new Promise((resolve, reject) => {
-    setTimeout(() => reject("bad request"), 1000);
-});
-
-try{
-    await resolvePromise1.then((result) => console.log(result))
-        .catch((error) => { throw new Error(error); });
-
-    await rejectPromise1.then((result) => console.log(result))
-        .catch((error) => {throw new Error(error)});
-} catch (e) {
-    console.log(`Registered error: ${e.message}`);
-} finally {
-    console.log("End of try catch");
-}
-
-//the output appears in 1 second: (because the promises are run during their initialization, not when .then/.catch assigned)
-// ok 
-// Caught error with message: bad request
-// End of try-catch
-
-//Promise.all
-try{
-    await Promise.all([
-        resolvePromise.then((result) => console.log(result)).catch((error) => {throw new Error(error);}), 
-        rejectPromise.then((result) => console.log(result)).catch((error) => {throw new Error(error);})
-    ]);
-} catch (e){
-    console.log(`Caught error with message: ${e.message}`);
-} finally {
-    console.log("End of try-catch");
-}
-//Output if timeout resolvePromise is longer than rejectPromise:
-// Caught error with message: bad request
-// End of try-catch
-// ok
-
-
-//Async await replaces this:
+//Async/await
+//await replaces this:
 promise.then(result => {
     // ...
   }).catch(err => {
@@ -194,10 +99,182 @@ async function getData() {
   fetchData(); //Failed: fetch failed
   
 
-//you can mix await with .then:
-await fetch(url).then(res => res.json());
+//Don’t mix await and .then, instead of this:
+const data = await fetch(url).then(res => res.json()); //note that await is applied for whole .then chain 
+//- awaits fro fetch and then awaits for res.json()
 
-//but it's better to use 
+//write this
 const res = await fetch(url);
 const data = await res.json();
+
+//try catch 
+try {
+    throw new Error("Error message");
+  } catch (err) {
+    console.error("Error caught:", err.message);
+  } finally {
+    console.log("Try-catch run");
+  }
+//try catch works only with synchronous code, or with await (also sync) (same as in C#)
+async function fetchData() {
+    try {
+        const response = await fetch("https://api.example.com/data");
+        const data = await response.json();
+        console.log(data);
+    } catch (e) {
+        console.error("Fetch failed", e);
+    }
+}
+
+async function fetchData() {
+    try {
+        const response = fetch("https://api.example.com/data"); //won't catch async error
+    } catch (e) {
+        console.error("Fetch failed", e);
+    }
+}
+
+
+// wrong using try-catch:
+const resolvePromise = new Promise((resolve, reject) => {   // resolvePromise start Timeout here since this line, not in .then
+    setTimeout(() => resolve("ok"), 1000 );
+});
+
+const rejectPromise = new Promise((resolve, reject) => {
+    setTimeout(() => reject("bad request"), 1000);
+});
+
+try{
+    resolvePromise.then((result) => console.log(result))
+        .catch((error) => { throw new Error(error); }); 
+
+    rejectPromise.then((result) => console.log(result))
+        .catch((error) => {throw new Error(error)});
+} catch (e) {
+    console.log(`Registered error: ${e.message}`);
+} finally {
+    console.log("End of try catch");
+}
+//the output:
+// End of try catch
+// ok
+// ERROR! ... (thrown error outside of try-catch)
+
+// wrong mixing try-catch with .then.catch:
+const resolvePromise1 = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("ok"), 1000 );
+});
+
+const rejectPromise1 = new Promise((resolve, reject) => {
+    setTimeout(() => reject("bad request"), 1000);
+});
+
+try{
+    await resolvePromise1.then((result) => console.log(result))
+        .catch((error) => { throw new Error(error); });
+
+    await rejectPromise1.then((result) => console.log(result))
+        .catch((error) => {throw new Error(error)});
+} catch (e) {
+    console.log(`Registered error: ${e.message}`);
+} finally {
+    console.log("End of try catch");
+}
+
+//the output appears in 1 second: (because the promises are run during their initialization, not when .then/.catch assigned)
+// ok 
+// ERROR!
+// Registered error: bad request
+// End of try-catch
+
+//instead of this use: (same promises, same output)
+
+try{
+    const result = await resolvePromise1;
+    console.log(result);
+
+    const result2 = await rejectPromise1;
+    console.log(result2);                   //won't be reached
+} catch (e) {
+    console.log(`Registered error: ${e}`);  //e instead of e.message because reject(plain_string)
+} finally {
+    console.log("End of try catch");
+}                                           
+
+//Promise.all
+const resolvePromise2 = new Promise((resolve, reject) => { // runs the promise
+    setTimeout(() => resolve("ok"), 10 );
+});
+
+const rejectPromise2 = new Promise((resolve, reject) => { // runs the promise
+    setTimeout(() => reject("bad request"), 1000);
+});
+
+try{
+    await Promise.all([resolvePromise2, rejectPromise2]); // promises were run earlier, they even might finish faster than 
+} catch (e){                                              // call stack reach this line, in this case await Promise.all
+    console.log(`Caught error with message: ${e}`);       // will be finished immediately 
+} finally {
+    console.log("End of try-catch");
+}
+//Output after 1 s (waits for longer rejectPromise2)
+// Caught error with message: bad request
+// End of try-catch
+
+//Full flow example TS
+async function getUser(id: number) {
+    const res = await fetch(`/api/users/${id}`);
+    if (!res.ok) throw new Error("User not found");
+    return res.json();
+}
+  
+async function main() {
+    try {
+        const user = await getUser(1);
+        console.log("User:", user);
+    } catch (e) {
+        console.error("Error:", e);
+    }
+}
+
+
+
+
+
+async function getUser(userId: number): Promise<{ id: number, name: string }> {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve({ id: userId, name: "Alice" }), 1000);
+    });
+  }
+  
+ async function getPostsByUser(userId: number): Promise<string[]> {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(["Post 1", "Post 2", "Post 3"]), 1500);
+    });
+  }
+  
+async function fetchUserData(userId: number): Promise<object>{
+try{
+    const user = await getUser(userId);
+    const userPosts = await getPostsByUser(userId);
+//    Promise.all([user, userPosts]);
+    
+//    const awaitedU = await user;
+//    const awaitedUP = await userPosts;
+    
+    const obj = {name: user.name, posts: userPosts};
+    return obj;
+  } catch (e){
+    return e;
+  }
+}
+
+async function main(): Promise<void>{
+    const result = await fetchUserData(3);
+    console.log(result);
+}
+
+main();
+
+
   
