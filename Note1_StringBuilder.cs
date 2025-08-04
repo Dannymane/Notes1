@@ -39,8 +39,11 @@ public class Program{
       //Can not create an instance of the static class 
       // StaticClass sc = new StaticClass();
       // sc.Test();
+      
+      string s0 = "Hello World";
+      //s0[1] = 'X   '; //error
 
-      foreach(int i in Program.IteratorMethod())
+      foreach (int i in Program.IteratorMethod())
       {
          Console.WriteLine(i);
       }
