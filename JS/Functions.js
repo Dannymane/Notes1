@@ -40,10 +40,6 @@ function sum(...numbers) {
 }
 console.log(sum(1, 2, 3, 4)); // 10
 
-//setTimeout is a JS function that runs the passed function after delay (ms)
-setTimeout(() => console.log("Delayed"), 1000); //doesn't block the program, just execute this later
-
-
 //Closure:
 function getCounter() {
     let count = 0;
