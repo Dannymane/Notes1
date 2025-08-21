@@ -28,9 +28,10 @@ getUser()
     .then(result => console.log(result.name)) // "Alice"
     .catch(err => console.error(err));
 
+//------------------------------------------------------------------------------------
+// info below is important but it works differently with await -> for await see below
 
 console.log("Start");
-
 const promise2 = new Promise((resolve, reject) => {
 
     for (let i = 0; i < 1e9; i++) {}  // ~1 second 
@@ -39,7 +40,6 @@ const promise2 = new Promise((resolve, reject) => {
 })
 .then(r => console.log(r)); //then schedules microtask
 // microtasks are run always after the current synchronous code
-
 for (let i = 0; i < 1e9; i++) {}  // ~1 second 
 console.log("End");
 
@@ -51,17 +51,66 @@ console.log("End");
 
 // Current stack, microtask queue, macrotask queue 
 console.log("Start");
+
+const promiseTimeout1 = new Promise((resolve, reject) => {      //schedules it to macrotask queue - runs after microtask queue
+        setTimeout(() => resolve("Promise.then.timeout 1"), 0 );
+    })
+    .then((result) => console.log(result));
+
 setTimeout(() => Promise.resolve().then(() => console.log("setTimeout Promise.then")), 0);
-setTimeout(() => console.log("setTimeout"), 0); //schedules it to macrotask queue - runs after microtask queue
-Promise.resolve().then(() => console.log("Promise.then"));
+setTimeout(() => console.log("setTimeout"), 0); 
+Promise.resolve().then(() => console.log("Promise.then")); //schedules it to  microtask queue
+
+const promiseTimeout2 = new Promise((resolve, reject) => {   
+        setTimeout(() => resolve("Promise.then.timeout 2"), 0 );
+    })
+    .then((result) => console.log(result));
+
 console.log("End");
 
 //Output
 // Start
 // End
 // Promise.then
-// setTimeout Promise.then
+// Promise.then.timeout 1
+// setTimeout Promise.then //but if timeout ends after "setTimeout" - it will be the last, even if both ends before "end"
 // setTimeout
+// Promise.then.timeout 2
+
+//Finally: 
+// Sync code runs first,                                                                                     Sync queue.
+// Then promises without timeout (microtasks) even they finished earlier than sync.                          Microtask queue. 
+//  Then any timeouts regardless it within Promise or not, even they finished earlier than promises/sync.    Macrotask queue.
+
+//with await:
+
+console.log("sync  1");
+setTimeout(() => console.log("setTimeout 1"), 0);
+fetchData();
+async function fetchData() {
+    try {
+      setTimeout(() => console.log("setTimeout inside 1"), 0);
+      console.log("sync inside 1");
+      const res = await fetch("https://api.example.com/data"); //throws error and code below won't be executed
+      const data = await res.json();
+      console.log(data);
+      console.log("sync inside 2");
+    } catch (e) {
+      console.error("Failed:", e.message);
+    }
+}
+setTimeout(() => console.log("setTimeout 2"), 0);
+console.log("sync  2");  
+
+//output: 
+// sync  1
+// sync inside 1
+// sync  2
+// setTimeout 1
+// setTimeout inside 1
+// setTimeout 2
+// Exception caught: fetch failed
+
 
 //Async/await
 //await replaces this:
