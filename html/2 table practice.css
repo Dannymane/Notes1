@@ -1,0 +1,32 @@
+table {
+  font-family: Georgia, 'Times New Roman';
+  text-align: center;
+}
+
+table th, td{
+  border: 1px solid grey;
+  padding: 12px;
+}
+
+table th:hover, td:hover{
+  background-color: lightpink;
+}
+
+table tfoot {
+  background-color: gainsboro;
+}
+
+table thead th {
+  background-color: black;
+  color: white;
+  
+}
+
+table th[scope="row"] {
+  background-color: aquamarine;
+}
+
+table th[scope="row"]:hover {
+  background-color: lightpink;
+}
+

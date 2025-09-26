@@ -1,0 +1,81 @@
+table{
+  border: 1px solid black;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  font-size: small;
+}
+
+.div{
+  background-color: green;
+}
+table thead{
+  background-color: aqua;
+}
+
+table tfoot{
+  background-color: gainsboro;
+}
+
+table th[scope="row"]{
+  background-color: gainsboro;
+  text-align: left;
+}
+
+table td{
+  border: 1px solid grey;
+  text-align: center;
+}
+
+.text-align-justify {
+  text-align: justify;
+  padding: 0px 40px
+}
+
+.big-font {
+  font-size: 80px;
+}
+
+#box {
+  background-color: brown;
+  padding: 100px;
+}
+
+#box div:first-child{
+  padding: 20px;
+  background-color: blue;
+}
+:nth-child(8){
+  padding: 10px;
+}
+
+#flexbox {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 10px;
+  max-width: 900px;
+  flex-shrink: 1;
+}
+
+#div1, #div2, #div3 {
+  height: 100px;
+}
+
+#div1{
+  background-color: coral;
+  min-width: 100px;
+  width: 50%;
+}
+
+#div2{
+  background-color: lightblue;
+  min-width: 100px;
+  width: 100%;
+}
+
+#div3{
+  background-color: lightgreen;
+  width: 400px;
+  flex-shrink: 0;
+}
