@@ -41,3 +41,4 @@ C:\Repos\MyNotesVSCode\Notes1\bin\Debug\net6.0\Notes1.dll
 C:\Repos\MyNotesVSCode\Notes1\bin\Debug\net6.0\Notes1.pdb
 C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\Notes1.genruntimeconfig.cache
 C:\Repos\MyNotesVSCode\Notes1\obj\Debug\net6.0\ref\Notes1.dll
+C:\Work\Material for preparing for the interview\Notes1\obj\Debug\net6.0\Notes1.sourcelink.json

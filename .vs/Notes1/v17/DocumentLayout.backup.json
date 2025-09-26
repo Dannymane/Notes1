@@ -1,0 +1,189 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Work\\Material for preparing for the interview\\Notes1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AF05D4AE-5804-43D0-840D-476D977ACC6A}|..\\XUnit tests 1\\XUnit tests 1.csproj|c:\\work\\material for preparing for the interview\\xunit tests 1\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF05D4AE-5804-43D0-840D-476D977ACC6A}|..\\XUnit tests 1\\XUnit tests 1.csproj|c:\\work\\material for preparing for the interview\\xunit tests 1\\usings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF05D4AE-5804-43D0-840D-476D977ACC6A}|..\\XUnit tests 1\\XUnit tests 1.csproj|c:\\work\\material for preparing for the interview\\xunit tests 1\\collectionbehavioroverride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|c:\\work\\material for preparing for the interview\\notes1\\practice3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|solutionrelative:practice3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|c:\\work\\material for preparing for the interview\\notes1\\regex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|solutionrelative:regex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|c:\\work\\material for preparing for the interview\\notes1\\linq.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|solutionrelative:linq.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|c:\\work\\material for preparing for the interview\\notes1\\practice2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|solutionrelative:practice2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|c:\\work\\material for preparing for the interview\\notes1\\collections.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAE8EA61-0C90-4E0C-AEA9-688BF91CCCB0}|Notes1.csproj|solutionrelative:collections.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Work\\Material for preparing for the interview\\Notes1\\Note1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Note1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 243,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Practice3.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\Notes1\\Practice3.cs",
+              "RelativeDocumentMoniker": "Practice3.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\Notes1\\Practice3.cs",
+              "RelativeToolTip": "Practice3.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-05T16:56:30.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Practice2.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\Notes1\\Practice2.cs",
+              "RelativeDocumentMoniker": "Practice2.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\Notes1\\Practice2.cs",
+              "RelativeToolTip": "Practice2.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAABOwAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-10-05T11:30:33.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Note1.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\Notes1\\Note1.cs",
+              "RelativeDocumentMoniker": "Note1.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\Notes1\\Note1.cs",
+              "RelativeToolTip": "Note1.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAABgAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T09:47:04.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Collections.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\Notes1\\Collections.cs",
+              "RelativeDocumentMoniker": "Collections.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\Notes1\\Collections.cs",
+              "RelativeToolTip": "Collections.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAwBQAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-10-05T11:17:09.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\XUnit tests 1\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "..\\XUnit tests 1\\UnitTest1.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\XUnit tests 1\\UnitTest1.cs",
+              "RelativeToolTip": "..\\XUnit tests 1\\UnitTest1.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-10-03T11:12:14.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CollectionBehaviorOverride.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\XUnit tests 1\\CollectionBehaviorOverride.cs",
+              "RelativeDocumentMoniker": "..\\XUnit tests 1\\CollectionBehaviorOverride.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\XUnit tests 1\\CollectionBehaviorOverride.cs",
+              "RelativeToolTip": "..\\XUnit tests 1\\CollectionBehaviorOverride.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-10-05T14:22:11.071Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Usings.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\XUnit tests 1\\Usings.cs",
+              "RelativeDocumentMoniker": "..\\XUnit tests 1\\Usings.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\XUnit tests 1\\Usings.cs",
+              "RelativeToolTip": "..\\XUnit tests 1\\Usings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-10-03T11:10:30.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Regex.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\Notes1\\Regex.cs",
+              "RelativeDocumentMoniker": "Regex.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\Notes1\\Regex.cs",
+              "RelativeToolTip": "Regex.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAkwBYAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-05T16:47:46.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Linq.cs",
+              "DocumentMoniker": "C:\\Work\\Material for preparing for the interview\\Notes1\\Linq.cs",
+              "RelativeDocumentMoniker": "Linq.cs",
+              "ToolTip": "C:\\Work\\Material for preparing for the interview\\Notes1\\Linq.cs",
+              "RelativeToolTip": "Linq.cs",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAuwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-05T16:50:52.485Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
