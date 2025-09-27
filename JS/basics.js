@@ -10,3 +10,8 @@ return {
     ...item,
     isEndOfShelf
 };
+
+
+//---
+let a = 2; 
+let a = 3; //error
