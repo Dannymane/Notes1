@@ -14,5 +14,15 @@
 @else{
 	<span>No, the server is not running</span>
 }
-<br/>
 <button (click)="changeCity()">Change city</button>
+<br/>
+<div [style.visibility]="divVisibility">
+	@for (user of users; track user.id){
+		<p>{{user.name}}</p>
+	}
+</div>
+
+
+
+
+
