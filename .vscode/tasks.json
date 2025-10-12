@@ -41,6 +41,9 @@
          "type": "npm",
          "script": "start",
          "isBackground": true,
+         "options": {
+            "cwd": "${workspaceFolder}/Angular/Projects/sandbox-app/sandbox"
+          },
          "problemMatcher": {
            "owner": "typescript",
            "pattern": "$tsc",

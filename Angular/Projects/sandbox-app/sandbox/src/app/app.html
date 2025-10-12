@@ -4,9 +4,8 @@
 <br/>
 {{2 + 3}}
 <br/>
-<app-user>This text within app-user won't be shown</app-user>
+
 <br/>
-<app-user/>
 <br/>
 @if(isServerRunning){
 	<span>Yes, the server is running</span>
@@ -17,10 +16,17 @@
 <button (click)="changeCity()">Change city</button>
 <br/>
 <div [style.visibility]="divVisibility">
-	@for (user of users; track user.id){
+	<!-- track user.id is required, you must use unique identifier of user -->
+	@for (user of users; track user.id){ 
 		<p>{{user.name}}</p>
 	}
 </div>
+<div (mouseleave)="hideSecreteMessage()" (mouseover)="showSecreteMessage()">
+	hover to show secrete message
+</div>
+<section id="secreteMessage">{{ secretMessage }}</section>
+<app-user>This text within app-user won't be shown</app-user>
+<app-user name="John" surname="Walker"/>
 
 
 

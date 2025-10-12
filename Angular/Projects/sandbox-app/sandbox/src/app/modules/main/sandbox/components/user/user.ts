@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { UserInterface } from '../../models/user.model';
+
 
 @Component({
   selector: 'app-user',
@@ -6,6 +8,25 @@ import { Component } from '@angular/core';
   templateUrl: './user.html',
   styleUrl: './user.scss'
 })
+
 export class User {
 
+  id = input<number>();
+  name = input<string>();
+  surname = input<string>();
+  age = input<number>();
+
+  incrementUserAgeEvent = output<UserInterface>();
+
+
+  incrementUserAge() {
+    this.age.set(this.age() + 1);
+    
+    this.incrementUserAgeEvent.emit({
+      id: this.id(),
+      name: this.name(),
+      surname: this.surname(),
+      age: this.age()
+    });
+  }
 }

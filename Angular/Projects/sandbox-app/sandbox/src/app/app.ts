@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { User } from './modules/main/sandbox/components/user/user';
+import { UserInterface } from './modules/main/sandbox/models/user.model';
+import { User } from "./modules/main/sandbox/components/user/user";
 
 type Visivility = 'visible' | 'hidden';
 @Component({
@@ -15,6 +16,7 @@ export class App {
   city = "Vinnytsia";
   isServerRunning = true;
   divVisibility: Visivility = 'visible';
+  secretMessage = "";
 
   changeCity() {
     this.city = "Kyiv";
@@ -23,6 +25,14 @@ export class App {
     this.divVisibility = this.divVisibility === 'visible' ? 'hidden' : 'visible';
   }
 
-  protected users = [{name: 'John', id: 0}, {name: 'Alice', id: 1}, {name: 'Bob', id: 2}];
+  protected users : UserInterface[] = [{name: 'John', id: 0}, {name: 'Alice', id: 1}, {name: 'Bob', id: 2}];
+
+  hideSecreteMessage() {
+    this.secretMessage = "";
+  }
+
+  showSecreteMessage() {
+    this.secretMessage = "THE SECRET MESSAGE";
+  }
 }
 
