@@ -55,7 +55,7 @@ console.log("Start");
 const promiseTimeout1 = new Promise((resolve, reject) => {      //schedules it to macrotask queue - runs after microtask queue
         setTimeout(() => resolve("Promise.then.timeout 1"), 0 );
     })
-    .then((result) => console.log(result));
+    .then((result) => console.log(result)); //.then schedules it to  microtask queue, but timeout inside moves it to macrotask queue
 
 setTimeout(() => Promise.resolve().then(() => console.log("setTimeout Promise.then")), 0);
 setTimeout(() => console.log("setTimeout"), 0); 
@@ -81,6 +81,7 @@ console.log("End");
 // Sync code runs first,                                                                                     Sync queue.
 // Then promises without timeout (microtasks) even they finished earlier than sync.                          Microtask queue. 
 //  Then any timeouts regardless it within Promise or not, even they finished earlier than promises/sync.    Macrotask queue.
+// the order within each queue is depends on finishing time
 
 //with await:
 
@@ -150,7 +151,7 @@ async function getData() {
 
 //Don’t mix await and .then, instead of this:
 const data = await fetch(url).then(res => res.json()); //note that await is applied for whole .then chain 
-//- awaits fro fetch and then awaits for res.json()
+//- awaits for fetch and then awaits for res.json()
 
 //write this
 const res = await fetch(url);
@@ -261,14 +262,31 @@ const rejectPromise2 = new Promise((resolve, reject) => { // runs the promise
 
 try{
     await Promise.all([resolvePromise2, rejectPromise2]); // promises were run earlier, they even might finish faster than 
-} catch (e){                                              // call stack reach this line, in this case await Promise.all
-    console.log(`Caught error with message: ${e}`);       // will be finished immediately 
+                                                          // call stack reach this line, in this case await Promise.all
+                                                          // will be finished immediately 
+
+    const ok = await resolvePromise2;   //won't reach this because of earlier reject in Promise.all, but you can put it before Promise.all
+    console.log(ok);
+} catch (e){                                             
+    console.log(`Caught error with message: ${e}`);       
 } finally {
     console.log("End of try-catch");
 }
 //Output after 1 s (waits for longer rejectPromise2)
 // Caught error with message: bad request
 // End of try-catch
+
+//the correct way to use Promise.all that returns an array of responses
+try {
+    const [ok, ok2] = await Promise.all([resolvePromise2, rejectPromise2]); //(if one rejects - immediately goes to catch)
+    console.log(ok); //ok and ok2 are two const variables
+    console.log(ok2);
+} catch (e) {
+    console.log(`Caught error with message: ${e}`);
+} finally {
+    console.log("End of try-catch");
+}
+//also you can use Promise.allSettled to get all results including rejected ones - it never throws an error
 
 //Full flow example TS
 async function getUser(id: number) {
@@ -305,11 +323,8 @@ async function getUser(userId: number): Promise<{ id: number, name: string }> {
 async function fetchUserData(userId: number): Promise<object>{
 try{
     const user = await getUser(userId);
-    const userPosts = await getPostsByUser(userId);
-//    Promise.all([user, userPosts]);
-    
-//    const awaitedU = await user;
-//    const awaitedUP = await userPosts;
+    const userPosts = await getPostsByUser(userId); //executes only when getUser return result (if error -> catch)
+//    [user, userPosts] = Promise.all([user, userPosts]); - best way to run in parallel
     
     const obj = {name: user.name, posts: userPosts};
     return obj;
@@ -326,4 +341,39 @@ async function main(): Promise<void>{
 main();
 
 
+//Microtask and Macrotask queues with async/await
+
+console.log("A");
+Promise.resolve().then(() => console.log("Promise.then"));
+console.log("B");
+
+// A 
+// B
+// Promise.then
+
+console.log("A");
+await Promise.resolve().then(() => console.log("Promise.then"));
+console.log("B");
+
+// A
+// Promise.then
+// B
+
+//after await the subsequent code goes to microtask queue:
+
+async function getOne(){ //instead of `await getOne();` might be any await `await Promise.resolve().then(() => console.log("Promise.then"));`
+    return 1;
+}
   
+console.log("A");                                           //stack
+setTimeout(() => console.log("setTimeout"));                //schedules to macrotask queue
+Promise.resolve().then(() => console.log("Promise.then"));  //schedules to microtask queue
+await getOne();                                             //run getOne() and await result - moves subsequent code to microtask queue
+console.log("B");
+
+// A
+// Promise.then
+// B
+// setTimeout
+
+//so the B was moved to microtask queue where the Promise.then was first

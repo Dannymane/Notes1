@@ -89,9 +89,11 @@ function show() {
 }
 
 const obj2 = { name: "Dan" };
-show.call(obj2);   // sets `this` to obj
-show.apply(obj2);  // same as call
-show(); // { name: 'Dan' }
+obj2.show(); // Error - Property 'show' does not exist on type '{ name: string; }'
+show.call(obj2);  // { name: 'Dan' }    
+show.apply(obj2);  // { name: 'Dan' } // same as call
+
 
 const bound = show.bind(obj2);
-bound(); // also sets `this` to obj
+bound(); // sets `this` to obj2
+
