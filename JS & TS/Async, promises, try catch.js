@@ -1,6 +1,8 @@
 //setTimeout is a JS function that runs the passed function after delay (ms)
 setTimeout(() => console.log("Delayed"), 1000); //doesn't block the program, just execute this later
 
+//after long investigation
+
 const promise0 = new Promise((resolve, reject) => {
         resolve("Done!");  // marks as successful or reject("Error!") - marks as failed
 });
@@ -368,7 +370,7 @@ async function getOne(){ //instead of `await getOne();` might be any await `awai
 console.log("A");                                           //stack
 setTimeout(() => console.log("setTimeout"));                //schedules to macrotask queue
 Promise.resolve().then(() => console.log("Promise.then"));  //schedules to microtask queue
-await getOne();                                             //run getOne() and await result - moves subsequent code to microtask queue
+console.log(await getOne());                                             //run getOne() and await result - moves subsequent code to microtask queue
 console.log("B");
 
 // A
@@ -377,3 +379,10 @@ console.log("B");
 // setTimeout
 
 //so the B was moved to microtask queue where the Promise.then was first
+
+
+
+//summary for async/await:
+//awaited code and sync code "in same queue"
+//await moves subsequent code to microtask queue, after any await the current microtask queue is executed
+//setTimeout always goes to macrotask queue and runs after sync, awaited and microtask code
