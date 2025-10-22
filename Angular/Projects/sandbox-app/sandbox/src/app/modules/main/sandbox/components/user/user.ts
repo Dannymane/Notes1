@@ -11,22 +11,22 @@ import { UserInterface } from '../../models/user.model';
 
 export class User {
 
-  id = input<number>();
-  name = input<string>();
-  surname = input<string>();
-  age = input<number>();
+  // id = input<number>();
+  // name = input<string>();
+  // surname = input<string>();
+  // age = input<number>();
 
-  incrementUserAgeEvent = output<UserInterface>();
+  // incrementUserAgeEvent = output<UserInterface>();
 
 
-  incrementUserAge() {
-    this.age.set(this.age() + 1);
+  // incrementUserAge() {
+  //   this.age.set(this.age() ?? 0 + 1);
     
-    this.incrementUserAgeEvent.emit({
-      id: this.id(),
-      name: this.name(),
-      surname: this.surname(),
-      age: this.age()
-    });
-  }
+  //   this.incrementUserAgeEvent.emit({
+  //     id: this.id() ?? 0,
+  //     name: this.name() ?? '',
+  //     surname: this.surname() ?? '',
+  //     age: this.age() ?? 0
+  //   });
+  // }
 }

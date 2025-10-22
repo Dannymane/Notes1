@@ -1,3 +1,6 @@
+//Don’t try to fully understand how it works, there is a big mess with it. Before read this file, check 
+// 4.6.1 Short tutorial - this is enough to know. 
+
 //setTimeout is a JS function that runs the passed function after delay (ms)
 setTimeout(() => console.log("Delayed"), 1000); //doesn't block the program, just execute this later
 
