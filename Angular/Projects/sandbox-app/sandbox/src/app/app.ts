@@ -79,13 +79,13 @@ export class App {
                                             
     setTimeout(() => console.log(`af${functionId}: setTimeout`), 0);
     console.log(`af${functionId}: A`); 
-    // for(let i = 0;i < 2e9;i++) {}  
-
+    for(let i = 0;i < 2e9;i++) {} 
+    
     const res1 =  await this.getValueFromApi(functionId.toString());
-    const res2 =  await this.getValueFromApi(functionId.toString() + `-2`);
     console.log(res1);
-    console.log(res2);
-       
+
+
+    for(let i = 0;i < 2e9;i++) {}     
     console.log(`af${functionId}: B`);  
 
     // const [res1, res2] = await Promise.all([
@@ -103,5 +103,49 @@ export class App {
     // console.log(`af${functionId}: B`);
   }
 
+  async printTwo(){ 
+    for(let i = 0;i < 2e9; i++) {}; // -> Stack
+    console.log(2);                 // -> Stack -> 3. 2
+  }
+
+  async printOne(){ 
+    console.log(`Entered print one`);       // -> Stack -> 2. Entered print one
+    Promise.resolve().then(() => console.log("Promise.then in one")); // -> microtask queue 
+    await this.printTwo();        // -> Stack goes within printTwo(), after finished await
+    //"for(let i = 0;i < 2e9; i++) {};" and "console.log(1);" -> microtask queue
+    for(let i = 0;i < 2e9; i++) {};
+    console.log(1);
+  }
+
+  async printOneClick(){
+    console.log("A");                                 // -> Stack -> 1. A                      
+    setTimeout(() => console.log("setTimeout"), 0);   // -> macrotask queue  
+    for(let i = 0;i < 2e9; i++) {};                   // -> Stack 
+    Promise.resolve().then(() => console.log("Promise.then")); //-> microtask queue 
+    await this.printOne();              // -> Stack goes within printOne(), after finished await
+                                        // console.log("B"); -> microtask queue
+    Promise.resolve().then(() => console.log("Promise.then 2")); // -> microtask queue
+    console.log("B"); //already in microtask queue (after await)
+  }
+  // -> microtask queue execution:
+  // 4. Promise.then
+  // 5. Promise.then in one
+  // 6. 1
+  // 7. B
+  // 8. Promise.then 2
+  // -> macrotask queue execution:
+  // 9. setTimeout
+
+  async printAClick(){
+    console.log("A");                                                
+    setTimeout(() => console.log("setTimeout"), 0);   
+    for(let i = 0;i < 2e9; i++) {};    
+  }
+  //if you click the second time printAClick during first "for(let i = 0;i < 2e9; i++) {};" execution
+  //the output will be: 
+  // A
+  // A
+  // setTimeout
+  // setTimeout
 }
 
