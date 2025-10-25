@@ -16,17 +16,23 @@
 <button (click)="changeCity()">Change city</button>
 <br/>
 <div [style.visibility]="divVisibility">
+	<app-user>This text within app-user won't be shown</app-user>
+	<app-user name="John" surname="Walker"/>
 	<!-- track user.id is required, you must use unique identifier of user -->
 	@for (user of users; track user.id){ 
-		<p>{{user.name}}</p>
+		<app-user 
+		[id]="user.id"
+		[name]="user.name"
+	  [surname]="user.surname"
+		[age]="user.age"
+		/>
 	}
 </div>
 <div (mouseleave)="hideSecreteMessage()" (mouseover)="showSecreteMessage()">
 	hover to show secrete message
 </div>
 <section id="secreteMessage">{{ secretMessage }}</section>
-<app-user>This text within app-user won't be shown</app-user>
-<app-user name="John" surname="Walker"/>
+
 <br/>
 <button (click)="asyncFunctionClick(1)">asyncFunctionClick 1</button>
 <br/>
@@ -39,5 +45,6 @@
 <br/>
 <button (click)="printAClick()">Print A</button>
 
+<app-reactive-form/>
 
 

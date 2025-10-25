@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { UserInterface } from '../../models/user.model';
 
 
@@ -11,10 +11,11 @@ import { UserInterface } from '../../models/user.model';
 
 export class User {
 
-  // id = input<number>();
-  // name = input<string>();
-  // surname = input<string>();
-  // age = input<number>();
+  id = input<number>();         //id is a read-only signal, it works with computed/effect,  
+  name = input<string>();       //but you can't assign by id(5);
+  surname = input<string>();
+  age = input<number | null>();
+
 
   // incrementUserAgeEvent = output<UserInterface>();
 

@@ -4,8 +4,6 @@
 //setTimeout is a JS function that runs the passed function after delay (ms)
 setTimeout(() => console.log("Delayed"), 1000); //doesn't block the program, just execute this later
 
-//after long investigation
-
 const promise0 = new Promise((resolve, reject) => {
         resolve("Done!");  // marks as successful or reject("Error!") - marks as failed
 });

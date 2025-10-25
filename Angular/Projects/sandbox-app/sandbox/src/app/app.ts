@@ -5,11 +5,13 @@ import { User } from "./modules/main/sandbox/components/user/user";
 import { Observable } from '../../node_modules/rxjs/dist/types/index';
 import { HttpClient } from '@angular/common/http';
 import { interval, firstValueFrom } from 'rxjs';
+import { ReactiveForm } from './modules/main/sandbox/components/reactive-form/reactive-form';
 
-type Visibility = 'visible' | 'hidden';
+ type Visibility = 'visible' | 'hidden';
+ 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, User],
+  imports: [RouterOutlet, User, ReactiveForm],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -23,12 +25,14 @@ export class App {
 
   constructor(private http: HttpClient) {}
 
-  changeCity() {
+  async changeCity() {
     this.city = `Kyiv`;
     this.title.set(`Kyiv signal`);
     this.isServerRunning = !this.isServerRunning;
     this.divVisibility = this.divVisibility === 'visible' ? 'hidden' : 'visible';
   }
+
+
 
   protected users : UserInterface[] = [
     {name: 'John', surname: 'Doe', age: 15, id: 0},
@@ -60,14 +64,8 @@ export class App {
     return 1; 
   }
 
-  // async getValueFromApi(value: string) : Promise<Observable<string>> {
-  //   for(let i = 0;i < 2e9;i++) {}   
-  //   const url = `${this.localTestApiUrl}?returnValue=${encodeURIComponent(value)}`;
-  //   const resp = await this.http.get(url, { responseType: 'text' }); 
-  //   console.log(`af${value}: getValueFromApi - after await`); 
-  //   return resp;
-  // }
 
+//------------------- notes ------------------
   async getValueFromApi(value: string): Promise<string> {
     const url = `${this.localTestApiUrl}?returnValue=${encodeURIComponent(value)}`;
     const response = await firstValueFrom(this.http.get(url, { responseType: 'text' }));
@@ -95,12 +93,6 @@ export class App {
     
     // console.log(res1, res2);
          
-    // Promise.resolve().then(() => console.log(`af${functionId}: Promise.then`));  
-    //console.log(`af${functionId}: ` + this.getOne(functionId));
-    // await this.fastAwait();
-    // await Promise.all([this.getOne(functionId), this.getTwo(functionId)]);                                          
-                                      
-    // console.log(`af${functionId}: B`);
   }
 
   async printTwo(){ 
