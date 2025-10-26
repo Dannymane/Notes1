@@ -5,9 +5,17 @@
          "name": "ng serve sandbox-app",
          "type": "chrome",
          "request": "launch",
-         "preLaunchTask": "npm: start",
+         "preLaunchTask": "npm: start sandbox-app",
          "url": "http://localhost:4200/",
          "webRoot": "${workspaceFolder}/Angular/Projects/sandbox-app/sandbox"
+      },
+      {
+        "name": "ng serve Tech-shop",
+        "type": "chrome",
+        "request": "launch",
+        "preLaunchTask": "npm: start Tech-shop",
+        "url": "http://localhost:4200/",
+        "webRoot": "${workspaceFolder}/Angular/Projects/Tech-shop"
       },
       {
          // Use IntelliSense to find out which attributes exist for C# debugging
