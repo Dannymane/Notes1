@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "b95648ac848bae03",
+        "id": "d18047abaeb9d1cc",
         "type": "tabs",
         "children": [
           {
-            "id": "ec868098de14c0dc",
+            "id": "c85e32f91144b4dd",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "HTML CSS JS TS.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "HTML CSS JS TS"
+              "title": "New tab"
             }
           }
         ]
@@ -155,6 +151,21 @@
               "icon": "spreadsheet",
               "title": "Advanced Tables"
             }
+          },
+          {
+            "id": "133817c467bf31e4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
           }
         ],
         "currentTab": 3
@@ -166,6 +177,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -176,14 +188,14 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "ec868098de14c0dc",
+  "active": "c85e32f91144b4dd",
   "lastOpenFiles": [
+    "HTML CSS JS TS.md",
     "Attachments/Pasted image 20250627084801.png",
     "Attachments/Pasted image 20250627084723.png",
     "Attachments/Pasted image 20250627084559.png",
     "Attachments/Pasted image 20250627084455.png",
     "Attachments",
-    "Pasted image 20250627084258.png",
-    "HTML CSS JS TS.md"
+    "Pasted image 20250627084258.png"
   ]
 }
