@@ -83,25 +83,17 @@ public class Program{
    //Test yourself
 
       //1. StringBuilder with capacity 40
-
+      
       //2. StringBuilder "Hello World!"
-         Console.WriteLine();
+      Console.WriteLine();
       //3. StringBuilder "Hello World!" with capacity 40
-         Console.WriteLine();
+      Console.WriteLine();
       //4. write third letter of "Hello World!"
       Console.WriteLine(); //l
 
-
-
-
-
-
-
-
-
       //5. "Hello World!" -> Hello World!?
       StringBuilder sb15 = new StringBuilder("Hello World!");
-      Console.WriteLine(sb15.Append("?"));
+      Console.WriteLine();
 
       //6."Your total amount is " -> "Your total amount is 25,00"
       StringBuilder sb16 = new StringBuilder("Your total amount is ");

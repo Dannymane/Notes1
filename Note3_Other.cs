@@ -10,7 +10,18 @@ namespace Notes1
     {
         public static void Mainw(string[] args)
         {
-
+            var strings = new List<string> { "Hello", "World", "!" };
+            var uppercase = strings.Select(s => 
+            {
+                Console.WriteLine(s);
+                return s.ToUpper();
+            })
+            .Where(s => s.Length > 3);
+            
+            foreach (var s in uppercase)
+            {
+                Console.WriteLine(s);
+            }
 
         }
     }
