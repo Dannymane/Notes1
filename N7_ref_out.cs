@@ -32,7 +32,7 @@ public class Program
         return 1;
     }
 
-    public static void Main(string[] args)
+    public static void Mainc(string[] args)
     {
         //ref and out are used to pass the pointer of the variable to the function and work with exactly with that pointer
         // IncreaseNumber(int a)

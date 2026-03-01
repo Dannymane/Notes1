@@ -65,9 +65,31 @@ public class Base {
 
 public class Derived : Base {
 	new public int number = 3;
-
-	// public Derived(){
-	// 	number = 4;
-	// }
-
 }
+//var a = new Derived(); //number not overriden, because Base constructor overrides old base "number" variable
+//Console.WriteLine(a.number); //3
+
+// public class Base2 {
+// 	public virtual int number = 1; //error - virtual not valid for fields
+// 	public Base2(){
+// 		number = 2;
+// 	}
+// }
+
+// public class Derived2 : Base2 {
+// 	public override int number = 3; //error - override not valid for fields
+// }
+
+
+public class Base3 {
+	public virtual int number {get; set;} = 1; 
+	public Base3(){
+		number = 2;
+	}
+}
+
+public class Derived3 : Base3 {
+	new public int number {get; set;} = 3;
+}
+//var a = new Derived2(); //number initialized to 3 and then overriden by base constructor
+//Console.WriteLine(a.number); //2
