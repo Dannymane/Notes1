@@ -2,6 +2,7 @@
 
 public class EmptyMain
 {
+	
 	public static void wMain(string[] args)
 	{
 		var range = Enumerable.Range(1 , 3);
